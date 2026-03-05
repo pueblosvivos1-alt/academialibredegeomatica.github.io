@@ -17,20 +17,25 @@
   @include meta.load-css("utilities");
 }
 
-/* 1. Apagamos el bosque del fondo general */
-html, body, .bg-surface-200, [class*="bg-"] {
-  background-image: none !important; /* Esto mata el dibujo del bosque */
-  background-color: #ffffff !important; /* Aquí puedes poner #ffffff para blanco o #000000 para negro */
+/* 1. Quitamos el bosque de TODA la página y ponemos fondo blanco (o el que gustes) */
+html, body, #page-wrapper, .bg-surface-200, [class*="bg-"] {
+  background-image: none !important;
+  background-color: #ffffff !important; /* Cámbialo a #f4f4f4 para un gris muy suave */
 }
 
-/* 2. Mantenemos la caja del planeta intacta */
-.hero, section[class*="hero"] {
+/* 2. Forzamos a que la caja de la Tierra aparezca en el centro */
+.hero, 
+section[class*="hero"], 
+.page-hero {
   background-image: url('/peakpx.jpg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  /* El tamaño que ya te gustaba se mantiene con estas líneas */
-  min-height: 60vh !important; 
-  margin: 20px auto !important;
-  border-radius: 15px !important;
+  min-height: 500px !important; /* Altura fija para que no desaparezca */
+  width: 90% !important;
+  max-width: 1100px !important;
+  margin: 40px auto !important;
+  border-radius: 20px !important;
+  display: block !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
 }
