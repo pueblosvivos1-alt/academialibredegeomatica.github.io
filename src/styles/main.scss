@@ -137,3 +137,10 @@ footer a:hover {
   transform: scale(1.2) !important;
   color: #f6921e !important;   /* Naranja de tu logo al pasar el mouse */
 }
+/* VOLVER EL TEXTO DEL PIE NEGRO (PARA QUE SE PIERDA CON EL FONDO) */
+footer span, 
+footer p, 
+.copyright {
+  color: #000000 !important; /* Negro absoluto */
+  transition: none !important;
+}
