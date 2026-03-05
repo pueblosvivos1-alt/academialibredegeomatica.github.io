@@ -21,24 +21,43 @@
    CONFIGURACIÓN FINAL: ACADEMIA LIBRE DE GEOMÁTICA
    ============================================================ */
 
-/* 1. FONDO NEGRO Y LIMPIEZA DE CAPAS */
+/* 1. FONDO NEGRO Y LIMPIEZA DE CLONACIÓN */
 html, body, #page-wrapper, .bg-surface-200 {
   background-color: #000000 !important;
   background-image: none !important;
 }
 
+/* Eliminamos capas fantasma que duplican la imagen */
 html::before, body::before, .bg-glass::before, [class*="hero"]::before {
   display: none !important;
   content: none !important;
 }
 
-/* 2. LA TIERRA (VENTANA PRINCIPAL) */
+/* 2. MENÚ SUPERIOR: TEXTO BLANCO Y MÁS GRANDE */
+/* Seleccionamos los enlaces del menú de navegación */
+header a, 
+.navbar a, 
+nav a, 
+.nav-links a,
+header span {
+  color: #ffffff !important;           /* Texto blanco */
+  font-size: 1.2rem !important;        /* Tamaño aumentado */
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+}
+
+header a:hover {
+  color: #f6921e !important;           /* Naranja al pasar el mouse */
+}
+
+/* 3. LA TIERRA (CONTENEDOR PRINCIPAL) */
 .hero, section.section, main#main-content {
   background-image: url('/peakpx.jpg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  min-height: 650px !important; 
+  min-height: 700px !important; 
   width: 95% !important;
   max-width: 1200px !important;
   margin: 40px auto !important;
@@ -47,98 +66,54 @@ html::before, body::before, .bg-glass::before, [class*="hero"]::before {
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  position: relative !important;
   text-align: center !important;
-  padding: 20px !important;
 }
 
-/* 3. LIMPIEZA DE CUADROS CLONADOS */
-.container, .hero-content, div[class*="glass"] {
-  background: transparent !important;
-  background-image: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  backdrop-filter: none !important;
-}
-
-/* 4. AJUSTE DE TEXTOS (TAMAÑOS Y COLORES) */
-h1, .hero-title, h2 {
+/* 4. AJUSTE DE TEXTOS CENTRALES */
+/* Título: Aumento masivo de tamaño */
+h1, .hero-title {
   color: #ffffff !important;
-  font-size: 3.5rem !important; 
-  font-weight: 800 !important;
-  line-height: 1.2 !important;
-  text-shadow: 0 4px 12px rgba(0,0,0,0.9) !important;
-  margin-bottom: 20px !important;
-  max-width: 900px !important;
+  font-size: 4.2rem !important;        /* Tamaño muy grande e imponente */
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+  text-shadow: 0 5px 15px rgba(0,0,0,1) !important;
+  margin-bottom: 25px !important;
 }
 
-/* DESCRIPCIÓN: TAMAÑO AUMENTADO */
-p, span, h3 {
+/* Descripción: "Plataforma de intercambio..." */
+p, .hero-subtitle {
   color: #ffffff !important;
-  font-size: 1.35rem !important; /* Aumentado desde 1.2rem */
-  line-height: 1.5 !important;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.8) !important;
-  margin-bottom: 30px !important;
+  font-size: 1.6rem !important;        /* Más legible y grande */
+  max-width: 800px !important;
+  margin: 0 auto 40px auto !important;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.9) !important;
 }
 
-/* 5. NAVEGACIÓN SUPERIOR: COLOR BLANCO Y TAMAÑO AUMENTADO */
-/* Usamos selectores genéricos para los enlaces del menú de arriba */
-.navbar a, 
-.header a, 
-.nav-links a {
-  color: #ffffff !important;           /* Texto blanco */
-  font-size: 1.15rem !important;      /* Un poco más grande */
-  font-weight: 500 !important;
-  text-decoration: none !important;
-  transition: color 0.3s ease !important;
-  padding: 0 10px !important;
-}
-
-/* Hover de Navegación: Naranja Logo */
-.navbar a:hover, 
-.header a:hover, 
-.nav-links a:hover {
-  color: #f6921e !important;           /* Naranja del logo */
-}
-
-/* 6. BOTÓN DIGITAL (ESTILO LOGOTIPO: NARANJA Y BLANCO) */
-/* Blindamos el formato solo para este botón */
-#main-content .btn, 
-.hero .btn, 
-a.btn, 
+/* 5. EL BOTÓN (REESTABLECIDO: NARANJA LOGOTIPO) */
+/* Usamos el color de tu logo #f6921e */
+#main-content a.btn, 
+.hero a.btn, 
 .btn-primary, 
-[href*="academia"] {
+a[href*="academia"],
+.btn {
   display: inline-block !important;
-  
-  /* FONDO: Degradado Naranja del Logo */
-  background: linear-gradient(135deg, #fbb03b 0%, #f6921e 100%) !important;
-  
-  /* TEXTO: Blanco */
-  color: #ffffff !important;           
-  
-  /* BORDE: Sutil Blanco */
-  border: 2px solid #ffffff !important; 
-  
-  /* TAMAÑO Y FORMA */
-  padding: 12px 30px !important;       
-  border-radius: 6px !important;       
-  font-size: 0.95rem !important;
+  background-color: #f6921e !important; /* NARANJA SÓLIDO LOGO */
+  color: #ffffff !important;           /* TEXTO BLANCO */
+  border: 1.5px solid #ffffff !important; 
+  padding: 14px 35px !important;       /* Un poco más grande para destacar */
+  border-radius: 6px !important;
+  font-size: 1rem !important;
   font-weight: 800 !important;
   text-transform: uppercase !important;
   letter-spacing: 2px !important;
   text-decoration: none !important;
-  
-  /* POSICIÓN Y SOMBRA */
-  margin-top: 30px !important;
-  box-shadow: 0 4px 15px rgba(246, 146, 30, 0.4) !important;
+  box-shadow: 0 4px 20px rgba(246, 146, 30, 0.4) !important;
   transition: all 0.3s ease !important;
 }
 
-/* Hover de Botón: Fondo Blanco, Texto Naranja */
-#main-content .btn:hover {
-  background: #ffffff !important;      /* Fondo blanco */
-  color: #f6921e !important;           /* Texto naranja */
-  border-color: #f6921e !important;
-  transform: translateY(-2px) scale(1.02) !important;
-  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3) !important;
+#main-content a.btn:hover {
+  background-color: #ffffff !important;
+  color: #f6921e !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 25px rgba(255, 255, 255, 0.2) !important;
 }
