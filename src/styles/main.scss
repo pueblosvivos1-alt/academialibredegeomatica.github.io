@@ -16,3 +16,13 @@
 @layer utilities {
   @include meta.load-css("utilities");
 }
+
+/* El bloque del fondo va AQUÍ, fuera de las capas de arriba */
+body, .hero, section {
+  background-image: url('/peakpx.jpg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+  min-height: 100vh !important;
+}
