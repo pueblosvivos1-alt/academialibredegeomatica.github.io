@@ -17,25 +17,32 @@
   @include meta.load-css("utilities");
 }
 
-/* 1. Quitamos el bosque de TODA la página y ponemos fondo blanco (o el que gustes) */
-html, body, #page-wrapper, .bg-surface-200, [class*="bg-"] {
+/* --- A PARTIR DE AQUÍ PEGAS EL CÓDIGO NUEVO --- */
+
+/* 1. Anulamos el bosque inyectado por la plantilla y ponemos fondo blanco */
+html::before, html::after, body::before, body::after {
+  content: none !important;
+  display: none !important;
   background-image: none !important;
-  background-color: #ffffff !important; /* Cámbialo a #f4f4f4 para un gris muy suave */
 }
 
-/* 2. Forzamos a que la caja de la Tierra aparezca en el centro */
-.hero, 
-section[class*="hero"], 
-.page-hero {
+html, body {
+  background-image: none !important;
+  background-color: #ffffff !important;
+}
+
+/* 2. Forzamos la visualización de la caja de la Tierra */
+.hero, section.section, main#main-content {
   background-image: url('/peakpx.jpg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  min-height: 500px !important; /* Altura fija para que no desaparezca */
-  width: 90% !important;
-  max-width: 1100px !important;
+  min-height: 500px !important; 
+  width: 95% !important;
+  max-width: 1200px !important;
   margin: 40px auto !important;
   border-radius: 20px !important;
   display: block !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+  position: relative !important;
+  z-index: 10 !important; 
 }
