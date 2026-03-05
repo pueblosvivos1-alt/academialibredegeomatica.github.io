@@ -33,22 +33,24 @@ html::before, body::before, .bg-glass::before, [class*="hero"]::before {
   content: none !important;
 }
 
-/* 2. MENÚ SUPERIOR: TEXTO BLANCO Y MÁS GRANDE */
-/* Seleccionamos los enlaces del menú de navegación */
-header a, 
-.navbar a, 
-nav a, 
-.nav-links a,
-header span {
-  color: #ffffff !important;           /* Texto blanco */
-  font-size: 1.2rem !important;        /* Tamaño aumentado */
-  font-weight: 500 !important;
-  text-decoration: none !important;
-  transition: all 0.3s ease !important;
+/* 2. MENÚ SUPERIOR: TEXTO BLANCO Y CENTRADO */
+header nav, 
+.navbar, 
+#header-nav,
+.nav-container {
+  display: flex !important;
+  justify-content: center !important; /* Esto centra los botones horizontalmente */
+  align-items: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
 }
 
-header a:hover {
-  color: #f6921e !important;           /* Naranja al pasar el mouse */
+/* Los enlaces individuales */
+header a, .navbar a, nav a {
+  color: #ffffff !important;
+  font-size: 1.2rem !important;
+  margin: 0 15px !important; /* Espacio entre botones */
+  text-decoration: none !important;
 }
 
 /* 3. LA TIERRA (CONTENEDOR PRINCIPAL) */
