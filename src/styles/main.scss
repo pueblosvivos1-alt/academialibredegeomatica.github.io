@@ -17,19 +17,23 @@
   @include meta.load-css("utilities");
 }
 
-/* Fondo general de la página (Color sólido) */
+/* 1. Fondo general de la página (El vacío del espacio) */
 html, body {
-  background-image: none !important; /* Quitamos el bosque */
-  background-color: #0b0d17 !important; /* Un azul muy oscuro casi negro */
+  background-image: none !important;
+  background-color: #05070a !important; /* Un negro azulado más profundo */
 }
 
-/* Imagen de la Tierra solo en la sección central */
-.hero, section[class*="hero"] {
+/* 2. La Tierra en la caja central */
+.hero, 
+section[class*="hero"], 
+.page-hero,
+div[class*="hero-content"] {
   background-image: url('/peakpx.jpg') !important;
   background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
-  min-height: 80vh !important; /* Ajusta la altura de la caja de la Tierra */
-  border-radius: 20px; /* Opcional: le da bordes redondeados a la caja de la Tierra */
-  margin: 20px; /* Opcional: le da un margen para que se vea el fondo sólido alrededor */
+  min-height: 70vh !important; 
+  border-radius: 24px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important; /* Un borde sutil */
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5) !important; /* Sombra para dar profundidad */
 }
