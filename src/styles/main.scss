@@ -119,3 +119,21 @@ a[href*="academia"],
   transform: translateY(-3px) !important;
   box-shadow: 0 6px 25px rgba(255, 255, 255, 0.2) !important;
 }
+/* ACLARAR ICONOS Y PIE DE PÁGINA */
+footer, .footer, [class*="footer"] {
+  background-color: transparent !important; /* Elimina fondos grises residuales */
+  opacity: 1 !important;
+}
+
+footer a, .social-links a, footer svg {
+  color: #ffffff !important;   /* Fuerza el blanco puro */
+  opacity: 1 !important;       /* Elimina la transparencia */
+  filter: none !important;     /* Quita cualquier efecto de oscurecimiento */
+  transition: transform 0.2s ease !important;
+}
+
+/* Efecto opcional: Que brillen un poco más al pasar el mouse */
+footer a:hover {
+  transform: scale(1.2) !important;
+  color: #f6921e !important;   /* Naranja de tu logo al pasar el mouse */
+}
