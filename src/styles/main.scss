@@ -17,12 +17,19 @@
   @include meta.load-css("utilities");
 }
 
-/* El bloque del fondo va AQUÍ, fuera de las capas de arriba */
-body, .hero, section {
+/* Fondo general de la página (Color sólido) */
+body {
+  background-image: none !important; /* Quitamos el bosque */
+  background-color: #0b0d17 !important; /* Un azul muy oscuro casi negro */
+}
+
+/* Imagen de la Tierra solo en la sección central */
+.hero, section[class*="hero"] {
   background-image: url('/peakpx.jpg') !important;
   background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
-  background-attachment: fixed !important;
-  min-height: 100vh !important;
+  min-height: 80vh !important; /* Ajusta la altura de la caja de la Tierra */
+  border-radius: 20px; /* Opcional: le da bordes redondeados a la caja de la Tierra */
+  margin: 20px; /* Opcional: le da un margen para que se vea el fondo sólido alrededor */
 }
