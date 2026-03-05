@@ -17,7 +17,11 @@
   @include meta.load-css("utilities");
 }
 
-/* 1. FONDO NEGRO Y LIMPIEZA DE CAPAS */
+/* ============================================================
+   PERSONALIZACIÓN FINAL: ELIMINACIÓN DE CLONACIÓN
+   ============================================================ */
+
+/* 1. Fondo negro y limpieza de cualquier rastro del bosque */
 html, body, #page-wrapper, .bg-surface-200, [class*="bg-"] {
   background-image: none !important;
   background-color: #000000 !important;
@@ -28,25 +32,32 @@ html::before, body::before, .bg-glass::before {
   display: none !important;
 }
 
-/* 2. REAPARICIÓN DE LA TIERRA (Caja única) */
-/* Usamos selectores más fuertes para que no desaparezca */
+/* 2. La Tierra como ÚNICA capa de fondo */
 main#main-content, .hero, section.section {
   background-image: url('/peakpx.jpg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  min-height: 600px !important; /* Altura para que se vea bien */
-  width: 90% !important;
+  min-height: 700px !important; /* Un poco más de altura para que luzca */
+  width: 95% !important;
   max-width: 1200px !important;
   margin: 40px auto !important;
   border-radius: 24px !important;
   display: block !important;
+  position: relative !important;
 }
 
-/* 3. TEXTOS EN BLANCO */
+/* 3. ¡ELIMINAR LA CLONACIÓN! 
+   Esto quita la imagen del cuadro interno donde está el texto */
+.container, .hero-content, [class*="glass"] {
+  background-image: none !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* 4. Textos en blanco */
 h1, h2, h3, p, span, .text-center {
   color: #ffffff !important;
   text-shadow: 0 2px 10px rgba(0,0,0,0.9) !important;
 }
-
-/* El botón de Explorar se mantiene con el estilo original de la plantilla */
