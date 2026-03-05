@@ -18,96 +18,87 @@
 }
 
 /* ============================================================
-   SOLUCIÓN NUCLEAR: ELIMINACIÓN DE FILTROS Y CAPAS
+   CONFIGURACIÓN FINAL: ACADEMIA LIBRE DE GEOMÁTICA
    ============================================================ */
 
-/* 1. APAGÓN GENERAL DE FONDOS */
-html, body, #page-wrapper, .bg-surface-200 {
+/* 1. FONDO NEGRO Y LIMPIEZA DE CAPAS */
+html, body, #page-wrapper {
   background-color: #000000 !important;
   background-image: none !important;
 }
 
-/* 2. LA TIERRA (LIMPIA Y SIN OBSTÁCULOS) */
-/* Aplicamos la imagen al contenedor principal */
-main#main-content, .hero, section.section {
+html::before, body::before, .bg-glass::before, [class*="hero"]::before {
+  display: none !important;
+  content: none !important;
+}
+
+/* 2. LA TIERRA (VENTANA PRINCIPAL) */
+.hero, section.section, main#main-content {
   background-image: url('/peakpx.jpg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  min-height: 600px !important;
+  min-height: 650px !important; 
   width: 95% !important;
   max-width: 1200px !important;
   margin: 40px auto !important;
   border-radius: 20px !important;
-  position: relative !important;
-  z-index: 1 !important;
-  
-  /* Flexbox para centrar todo */
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
+  position: relative !important;
+  text-align: center !important;
+  padding: 20px !important;
 }
 
-/* 3. ¡LA CLAVE! ELIMINAR EL CUADRO INTERNO "FANTASMA" */
-/* Esta regla hace transparente a CUALQUIER caja dentro de la hero */
-.hero div, 
-section div, 
-.container, 
-.hero-content, 
-[class*="glass"] {
+/* 3. LIMPIEZA DE CUADROS CLONADOS */
+.container, .hero-content, div[class*="glass"] {
   background: transparent !important;
   background-image: none !important;
-  background-color: transparent !important;
-  backdrop-filter: none !important; /* QUITA EL BORROSO */
-  box-shadow: none !important;
   border: none !important;
-}
-
-/* 4. LIMPIEZA DE PSEUDO-ELEMENTOS (SOMBREADOS EXTRAÑOS) */
-*:before, *:after {
   box-shadow: none !important;
-  background-image: none !important;
+  backdrop-filter: none !important;
 }
 
-/* 5. EL BOTÓN (RESCATE TOTAL) */
-/* Usamos z-index alto para sacarlo del fondo oscuro */
-#main-content a.btn, 
-.hero a, 
-a[href], 
-button.btn {
-  /* FORZAMOS VISIBILIDAD */
-  position: relative !important;
-  z-index: 999 !important; /* Lo pone encima de todo */
-  display: inline-block !important;
-  
-  /* ESTILO VISUAL */
-  background-color: #f6921e !important; /* NARANJA LOGO */
-  background-image: none !important;    /* Quita gradientes oscuros */
+/* 4. AJUSTE DE TEXTOS (TAMAÑO AUMENTADO) */
+h1, .hero-title, h2 {
   color: #ffffff !important;
-  border: 1px solid #ffffff !important;
-  
-  /* TAMAÑO Y FORMA */
-  padding: 8px 24px !important;
-  border-radius: 4px !important;
-  font-size: 0.85rem !important;
+  /* Aumentamos el tamaño aquí */
+  font-size: 3.5rem !important; 
   font-weight: 800 !important;
+  line-height: 1.2 !important;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.9) !important;
+  margin-bottom: 20px !important;
+  max-width: 900px !important;
+}
+
+p, span, h3 {
+  color: #ffffff !important;
+  font-size: 1.2rem !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.8) !important;
+}
+
+/* 5. EL BOTÓN DIGITAL (NARANJA LOGOTIPO) */
+#main-content .btn, .hero .btn, a.btn, .btn-primary {
+  display: inline-block !important;
+  background-color: #f6921e !important; /* NARANJA LOGO */
+  color: #ffffff !important;           /* TEXTO BLANCO */
+  border: 1px solid #ffffff !important; 
+  padding: 10px 24px !important;       /* Tamaño discreto */
+  border-radius: 4px !important;       /* Estética técnica */
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 2px !important;
   text-decoration: none !important;
-  
-  /* QUITAR EFECTOS DAÑINOS */
-  backdrop-filter: none !important;
-  filter: none !important;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5) !important;
-  
   margin-top: 30px !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4) !important;
+  transition: all 0.3s ease !important;
 }
 
-/* 6. TEXTOS (BLANCO PURO) */
-h1, h2, h3, p, span {
-  color: #ffffff !important;
-  text-shadow: 0 2px 4px rgba(0,0,0,1) !important;
-  z-index: 10 !important;
-  position: relative !important;
+#main-content .btn:hover {
+  background-color: #ffffff !important;
+  color: #f6921e !important;
+  transform: translateY(-2px) !important;
 }
