@@ -17,36 +17,30 @@
   @include meta.load-css("utilities");
 }
 
-/* 1. LIMPIEZA RADICAL DE CAPAS (Adiós a la clonación) */
-/* Esto elimina cualquier imagen que la plantilla intente poner por debajo o por encima */
-*, *::before, *::after {
-  --tw-ring-offset-shadow: 0 0 #0000 !important;
-  --tw-ring-shadow: 0 0 #0000 !important;
-  --tw-shadow: 0 0 #0000 !important;
-}
+/* ============================================================
+   SOLUCIÓN RADICAL: ACADEMIA LIBRE DE GEOMÁTICA
+   ============================================================ */
 
-html, body, #page-wrapper, .bg-surface-200, [class*="bg-glass"] {
-  background-image: none !important;
+/* 1. FONDO NEGRO Y ELIMINACIÓN DE CLONACIÓN */
+html, body, #page-wrapper, .bg-surface-200 {
   background-color: #000000 !important;
+  background-image: none !important;
 }
 
-/* Matamos específicamente el pseudo-elemento que crea el marco doble */
-[class*="hero"]::before, [class*="hero"]::after, 
-.bg-glass::before, .bg-glass::after,
-section::before, section::after {
+/* Matamos cualquier rastro de la imagen vieja o bordes fantasmas */
+html::before, body::before, .bg-glass::before, [class*="hero"]::before {
   display: none !important;
   content: none !important;
-  background-image: none !important;
 }
 
-/* 2. LA TIERRA (Única y centrada) */
+/* 2. LA TIERRA (UNA SOLA CAPA LIMPIA) */
 .hero, section.section, main#main-content {
   background-image: url('/peakpx.jpg') !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  min-height: 550px !important; 
-  width: 90% !important;
+  min-height: 600px !important; 
+  width: 95% !important;
   max-width: 1100px !important;
   margin: 40px auto !important;
   border-radius: 15px !important;
@@ -54,10 +48,9 @@ section::before, section::after {
   flex-direction: column !important;
   align-items: center !important;
   justify-content: center !important;
-  border: 1px solid rgba(255,255,255,0.1) !important;
 }
 
-/* 3. TRANSPARENCIA TOTAL PARA EL TEXTO */
+/* 3. TRANSPARENCIA PARA EL TEXTO (EVITA LA DOBLE IMAGEN) */
 .container, .hero-content, [class*="glass"] {
   background: transparent !important;
   background-image: none !important;
@@ -65,30 +58,34 @@ section::before, section::after {
   box-shadow: none !important;
 }
 
-/* 4. EL BOTÓN (NARANJA LOGOTIPO - DIGITAL) */
-/* Usamos el color exacto del logo #f6921e */
-a.btn, .btn, #main-content .btn, .btn-primary {
-  background-color: #f6921e !important; /* NARANJA SÓLIDO */
+/* 4. TEXTOS EN BLANCO */
+h1, h2, h3, p, span { color: #ffffff !important; }
+
+/* 5. BOTÓN DIGITAL CON COLORES DEL LOGO (DISCRETO) */
+/* Forzamos el naranja sólido del logo para que NO sea invisible */
+a.btn, .btn, .btn-primary, [class*="btn"] {
+  display: block !important;
+  width: fit-content !important;
+  background-color: #f6921e !important; /* NARANJA DEL LOGO */
   color: #ffffff !important;           /* TEXTO BLANCO */
-  padding: 8px 22px !important;        /* Tamaño discreto */
-  border-radius: 4px !important;       /* Estilo digital */
+  border: 1px solid #ffffff !important; /* BORDE FINO BLANCO */
+  padding: 8px 24px !important;        /* TAMAÑO DISCRETO */
+  border-radius: 4px !important;       /* ESTILO DIGITAL */
   font-size: 0.85rem !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
-  letter-spacing: 1px !important;
-  display: inline-block !important;
-  visibility: visible !important;
+  letter-spacing: 2px !important;
+  text-decoration: none !important;
+  margin: 25px auto 0 !important;      /* CENTRADO BAJO EL TEXTO */
   opacity: 1 !important;
-  border: 1px solid #ffffff !important; 
-  margin-top: 20px !important;
+  visibility: visible !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5) !important;
   transition: transform 0.2s ease !important;
 }
 
-a.btn:hover {
+/* Efecto al tocarlo */
+a.btn:hover, .btn:hover {
   transform: scale(1.05) !important;
   background-color: #ffffff !important;
   color: #f6921e !important;
 }
-
-/* 5. TEXTOS BLANCOS */
-h1, h2, h3, p, span { color: #ffffff !important; }
