@@ -23,28 +23,7 @@
   @apply bg-clip-padding backdrop-filter backdrop-saturate-100 backdrop-contrast-100;
 }
 
+// Gradient
 .gradient {
   @apply from-transparent via-transparent to-transparent;
-}
-
-/* --- SOLUCIÓN PARA OCULTAR EL CUADRO DE TEXTO --- */
-
-// 1. Ocultamos el contenedor de texto de la tarjeta
-.index-card-text-container, 
-.card-content, 
-.card-footer,
-[class*="index-card-footer"] {
-    display: none !important;
-    height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: none !important;
-    visibility: hidden !important;
-}
-
-// 2. Si el texto está dentro de un elemento glass independiente, lo ocultamos
-.glass-t, .glass {
-  &:not(:has(img)) { 
-     display: none !important;
-  }
 }
