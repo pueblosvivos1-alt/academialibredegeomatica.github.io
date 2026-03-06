@@ -1,5 +1,5 @@
 ---
-title: "."
+title: ""
 weight: 3
 description: "Cursos de Teledetección y Procesamiento Satelital"
 image: "@assets/docs/tele/3tele.png"
