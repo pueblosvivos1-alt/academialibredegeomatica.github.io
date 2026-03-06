@@ -62,3 +62,23 @@
     padding: 0 !important;
     margin: 0 !important;
 }
+/* Eliminación total del área de texto en las tarjetas */
+.card-text, 
+.card-body, 
+.index-card-footer,
+header.card-header + div { 
+  display: none !important;
+  max-height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  border: none !important;
+}
+
+/* Si el contenedor usa el efecto glass, lo forzamos a reducirse */
+.glass-t, .glass {
+  &:not(:has(img)) { // Si el elemento glass no tiene la imagen, se oculta
+     display: none !important;
+  }
+}
