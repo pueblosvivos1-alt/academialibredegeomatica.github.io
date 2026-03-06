@@ -1,6 +1,6 @@
 ---
-title: Tutorials
-description: This is the docs
-image: "@assets/backgrounds/bwca-dusk.png"
-draft: false
+title: ""
+weight: 2
+description: " "
+image: "@assets/docs/tele/3tele.png"
 ---
