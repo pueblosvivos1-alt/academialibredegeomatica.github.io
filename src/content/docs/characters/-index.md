@@ -1,6 +1,6 @@
 ---
-title: " "
-description: Character creation information
+title: "Fundamentos GIS"
+description: "Descripción del curso"
 image: "@assets/docs/characters/1fundamentos.png"
-imageAlt: A white knight, painted dramatically
+imageAlt: "Imagen de fundamentos"
 ---
