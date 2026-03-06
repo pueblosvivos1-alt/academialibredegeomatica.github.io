@@ -27,3 +27,12 @@
 .gradient {
   @apply from-transparent via-transparent to-transparent;
 }
+/* Ocultar SOLO el texto dentro de las tarjetas de la sección de documentos */
+.index-card-text-container {
+    display: none !important;
+}
+
+/* Si esto no es suficiente, esta regla oculta el bloque de cristal inferior de las tarjetas */
+.index-card-footer {
+    display: none !important;
+}
