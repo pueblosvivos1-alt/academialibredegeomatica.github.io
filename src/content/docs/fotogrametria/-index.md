@@ -1,6 +1,6 @@
 ---
-title: ""
+title: " "
 weight: 4
-image: "@assets/docs/drones/4fotogrametria.png"
+image: "@assets/docs/fotogrametria/4fotogrametria.png"
 description: " "
 ---
