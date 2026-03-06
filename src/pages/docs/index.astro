@@ -2,10 +2,17 @@
 import CollectionLayout from "@components/docs/CollectionLayout.astro";
 import { getIndex, getGroups } from "@lib/contentParser";
 import type { DocsEntry } from "@/types";
-import { sortByTitle } from "@lib/sortFunctions";
 
+// 1. Traemos los grupos sin el sortByTitle automático
 const collectionIndex = (await getIndex("docs")) as DocsEntry;
-const groupIndices = (await getGroups("docs", sortByTitle)) as DocsEntry[];
+const allGroups = (await getGroups("docs")) as DocsEntry[];
+
+// 2. Ordenamos manualmente por el campo 'weight' que añadimos al Markdown
+const groupIndices = allGroups.sort((a, b) => {
+  const weightA = a.data.weight || 99; // Si no tiene peso, lo manda al final
+  const weightB = b.data.weight || 99;
+  return weightA - weightB;
+});
 ---
 
 <CollectionLayout entries={groupIndices} collectionIndex={collectionIndex} />
