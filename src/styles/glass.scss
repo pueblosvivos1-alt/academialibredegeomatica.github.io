@@ -29,3 +29,15 @@
   // @apply from-txt-s via-transparent to-transparent;
   // @apply dark:from-darkmode-txt-s dark:via-transparent dark:to-transparent;
 }
+// Ocultar el contenedor si no tiene contenido hijo visible
+.glass, .glass-t {
+  &:empty {
+    display: none;
+  }
+  
+  // En caso de que Astro renderice un contenedor con espacios en blanco
+  // esto asegura que si no hay texto real, el bloque se oculte.
+  & h3:empty, & span:empty {
+    display: none;
+  }
+}
