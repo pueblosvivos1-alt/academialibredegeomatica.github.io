@@ -1,9 +1,8 @@
 ---
 title: "Analisis de peligros, vulnerabilidades y riesgos"
 empresa: "CAEG"
-tipo: "Corto"
+tipo: "Curso corto"
 image: "@assets/docs/gestion/06.- PORTADA.jpg"
-enlace: ""
 botonTexto: "ACCESO"
 weight: 1
 ---
