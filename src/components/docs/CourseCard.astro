@@ -1,22 +1,27 @@
 ---
-import type { DocsEntry } from "@/types";
 import { Image } from "astro:assets";
 
-interface Props {
-  entry: DocsEntry;
-}
-
+// Eliminamos la dependencia de Types externos temporalmente para asegurar que lea todo
 const { entry } = Astro.props;
-// Extraemos los datos del entry.data
-const { title, image, empresa, tipo, botonTexto } = entry.data;
+
+// Extracción directa y segura de los datos
+const title = entry.data.title;
+const image = entry.data.image;
+const empresa = entry.data.empresa;
+const tipo = entry.data.tipo;
+const botonTexto = entry.data.botonTexto;
+
+// Esta línea imprimirá los datos en tu terminal de VS Code para confirmar que Astro los lee
+console.log(`--- CARGANDO CURSO: ${title} ---`);
+console.log(`Empresa: ${empresa} | Tipo: ${tipo}`);
 ---
 
-<div class="h-full m-2 bg-[#0f172a] border border-white/20 rounded-2xl overflow-hidden flex flex-col shadow-2xl">
+<div class="h-full m-2 bg-[#0f172a] border border-white/20 rounded-2xl overflow-hidden flex flex-col shadow-2xl transition-all duration-300 hover:border-blue-500/50">
   
-  <div class="relative aspect-video bg-black">
+  <div class="relative aspect-video bg-black overflow-hidden">
     {image && (
       <Image
-        class="object-cover w-full h-full opacity-90"
+        class="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-500"
         src={image}
         alt={title}
         width={1280}
@@ -25,8 +30,8 @@ const { title, image, empresa, tipo, botonTexto } = entry.data;
     )}
     
     {tipo && (
-      <div class="absolute top-2 right-2 z-20">
-        <span class="bg-yellow-400 text-black text-[10px] font-black px-3 py-1 rounded-full uppercase">
+      <div class="absolute top-3 right-3 z-10">
+        <span class="bg-yellow-400 text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">
           {tipo}
         </span>
       </div>
@@ -39,14 +44,14 @@ const { title, image, empresa, tipo, botonTexto } = entry.data;
     </h3>
 
     {empresa && (
-      <div class="mb-5 border-l-4 border-blue-500 bg-white/5 p-3 rounded-r-lg">
-        <p class="text-[10px] text-blue-400 font-black uppercase mb-1">Certifica:</p>
-        <p class="text-white text-sm font-bold">{empresa}</p>
+      <div class="mb-5 border-l-4 border-blue-500 bg-blue-500/10 p-3 rounded-r-lg">
+        <p class="text-[10px] text-blue-400 font-black uppercase mb-1 tracking-tighter">Certifica:</p>
+        <p class="text-white text-sm font-bold leading-none">{empresa}</p>
       </div>
     )}
 
     <div class="mt-auto">
-      <div class="w-full text-center bg-blue-600 text-white text-xs font-black py-3 rounded-xl border-b-4 border-blue-800">
+      <div class="w-full text-center bg-blue-600 text-white text-xs font-black py-3 rounded-xl border-b-4 border-blue-800 shadow-lg">
         {botonTexto || "ACCESO"}
       </div>
     </div>
