@@ -1,27 +1,26 @@
 ---
 import { Image } from "astro:assets";
 
-// Eliminamos la dependencia de Types externos temporalmente para asegurar que lea todo
+// Recibimos la entrada del curso
 const { entry } = Astro.props;
 
-// Extracción directa y segura de los datos
-const title = entry.data.title;
-const image = entry.data.image;
-const empresa = entry.data.empresa;
-const tipo = entry.data.tipo;
-const botonTexto = entry.data.botonTexto;
+// Extracción ultra-segura de datos (Data Layer)
+const title = entry.data?.title || "Sin título";
+const image = entry.data?.image;
+const empresa = entry.data?.empresa;
+const tipo = entry.data?.tipo;
+const botonTexto = entry.data?.botonTexto || "ACCESO";
 
-// Esta línea imprimirá los datos en tu terminal de VS Code para confirmar que Astro los lee
-console.log(`--- CARGANDO CURSO: ${title} ---`);
-console.log(`Empresa: ${empresa} | Tipo: ${tipo}`);
+// Esto imprimirá en tu terminal de VS Code si los datos están llegando
+console.log(`>>> RENDERIZANDO: ${title} | Empresa: ${empresa} | Tipo: ${tipo}`);
 ---
 
-<div class="h-full m-2 bg-[#0f172a] border border-white/20 rounded-2xl overflow-hidden flex flex-col shadow-2xl transition-all duration-300 hover:border-blue-500/50">
+<div class="h-full m-2 bg-[#0f172a] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-2xl transition-all duration-300 hover:border-blue-500/50 group">
   
   <div class="relative aspect-video bg-black overflow-hidden">
     {image && (
       <Image
-        class="object-cover w-full h-full opacity-90 group-hover:scale-105 transition-transform duration-500"
+        class="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-500"
         src={image}
         alt={title}
         width={1280}
@@ -31,29 +30,36 @@ console.log(`Empresa: ${empresa} | Tipo: ${tipo}`);
     
     {tipo && (
       <div class="absolute top-3 right-3 z-10">
-        <span class="bg-yellow-400 text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">
+        <span class="bg-yellow-400 text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-xl border border-yellow-500">
           {tipo}
         </span>
       </div>
     )}
   </div>
 
-  <div class="p-5 flex flex-col flex-grow">
-    <h3 class="text-white font-bold text-lg mb-4 leading-tight">
+  <div class="p-5 flex flex-col flex-grow bg-gradient-to-b from-slate-900 to-[#0f172a]">
+    <h3 class="text-white font-bold text-lg mb-4 leading-tight group-hover:text-blue-400 transition-colors">
       {title}
     </h3>
 
     {empresa && (
-      <div class="mb-5 border-l-4 border-blue-500 bg-blue-500/10 p-3 rounded-r-lg">
-        <p class="text-[10px] text-blue-400 font-black uppercase mb-1 tracking-tighter">Certifica:</p>
-        <p class="text-white text-sm font-bold leading-none">{empresa}</p>
+      <div class="mb-5 flex flex-col border-l-4 border-blue-600 bg-blue-600/10 p-3 rounded-r-lg">
+        <span class="text-[9px] text-blue-400 font-black uppercase tracking-widest mb-1">Empresa Certificadora:</span>
+        <span class="text-white text-sm font-bold">{empresa}</span>
       </div>
     )}
 
     <div class="mt-auto">
-      <div class="w-full text-center bg-blue-600 text-white text-xs font-black py-3 rounded-xl border-b-4 border-blue-800 shadow-lg">
-        {botonTexto || "ACCESO"}
+      <div class="w-full text-center bg-blue-600 hover:bg-blue-500 text-white text-xs font-black py-3 rounded-xl border-b-4 border-blue-800 shadow-lg cursor-pointer transition-all active:scale-95">
+        {botonTexto}
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  /* Ajuste para asegurar que la tarjeta siempre tenga una altura mínima consistente */
+  .h-full {
+    min-height: 420px;
+  }
+</style>

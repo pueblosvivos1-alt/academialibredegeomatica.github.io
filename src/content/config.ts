@@ -4,7 +4,7 @@ const docs = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
     empresa: z.string().optional(),
-    tipo: z.string().optional(), // SIN ESPACIOS AQUÍ
+    tipo: z.string().optional(),
     botonTexto: z.string().optional(),
     image: image().optional(),
     weight: z.number().optional(),
