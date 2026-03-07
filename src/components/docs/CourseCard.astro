@@ -1,18 +1,21 @@
 ---
 const { entry } = Astro.props;
 
-// Extracción segura de datos del Markdown
-const title = entry.data?.title || "Sin título";
+// Datos seguros
+const title = entry.data?.title || "Curso sin título";
 const image = entry.data?.image;
 const empresa = entry.data?.empresa || "CAEG";
 const tipo = entry.data?.tipo || "Curso corto";
 const botonTexto = entry.data?.botonTexto || "ACCESO";
 
-// Procesamos la imagen: si Astro la convirtió en objeto, usamos .src, si es texto, la usamos tal cual
-const imageSrc = image ? (typeof image === 'object' ? image.src : image) : null;
+// Convertir la imagen en una ruta utilizable
+let imageSrc = "";
+if (image) {
+  imageSrc = typeof image === 'object' ? (image.src || "") : image;
+}
 ---
 
-<div class="h-full m-2 bg-[#0f172a] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-2xl group transition-all duration-300">
+<div class="h-full m-2 bg-[#0f172a] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-2xl group transition-all duration-300 hover:border-blue-500/50">
   
   <div class="relative aspect-video bg-black overflow-hidden">
     {imageSrc && (
@@ -24,19 +27,19 @@ const imageSrc = image ? (typeof image === 'object' ? image.src : image) : null;
     )}
     
     <div class="absolute top-3 right-3 z-10">
-      <span class="bg-[#facc15] text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-xl">
+      <span class="bg-[#facc15] text-black text-[10px] font-black px-3 py-1 rounded-full uppercase shadow-xl border border-yellow-600">
         {tipo}
       </span>
     </div>
   </div>
 
   <div class="p-5 flex flex-col flex-grow bg-gradient-to-b from-slate-900/50 to-[#0f172a]">
-    <h3 class="text-white font-bold text-base mb-4 leading-tight group-hover:text-blue-400 transition-colors">
+    <h3 class="text-white font-bold text-base mb-4 leading-tight">
       {title}
     </h3>
 
-    <div class="mb-5 flex flex-col items-center border-l-4 border-blue-600 bg-blue-900/20 p-3 rounded-r-lg shadow-inner">
-      <span class="text-[9px] text-blue-400 font-black uppercase tracking-[0.1em] mb-1">
+    <div class="mb-5 flex flex-col items-center border-l-4 border-blue-600 bg-blue-900/30 p-3 rounded-r-lg shadow-inner">
+      <span class="text-[9px] text-blue-400 font-black uppercase tracking-widest mb-1">
         Certifica:
       </span>
       <span class="text-white text-sm font-bold">
@@ -53,8 +56,5 @@ const imageSrc = image ? (typeof image === 'object' ? image.src : image) : null;
 </div>
 
 <style>
-  /* Asegura que todas las tarjetas tengan el mismo tamaño */
-  .h-full {
-    min-height: 420px;
-  }
+  .h-full { min-height: 420px; }
 </style>

@@ -1,24 +1,23 @@
 import { defineCollection, z } from 'astro:content';
 
-// Colección para los Cursos (Carpeta content/docs)
+// Colección para los Cursos
 const docs = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
-    empresa: z.string().optional(),
-    tipo: z.string().optional(),
-    botonTexto: z.string().optional(),
-    image: image().optional(),
+    empresa: z.string().default("CAEG"),
+    tipo: z.string().default("Curso corto"),
+    botonTexto: z.string().default("ACCESO"),
+    image: z.any().optional(), // Cambiado a 'any' para evitar bloqueos
     weight: z.number().optional(),
   }),
 });
 
-// Colección para la Inicio (Carpeta content/indexCards)
-// IMPORTANTE: Sin esto la página principal da error de "does not exist"
+// Colección para la Página de Inicio
 const indexCards = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string().optional(),
-    image: image().optional(),
+    image: z.any().optional(),
     link: z.string().optional(),
   }),
 });
