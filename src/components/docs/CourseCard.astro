@@ -3,38 +3,39 @@ import { Image } from "astro:assets";
 
 const { entry } = Astro.props;
 
-// Extracción segura de datos
+// Extracción de datos
 const title = entry.data?.title || "Sin título";
 const image = entry.data?.image;
 const empresa = entry.data?.empresa || "CAEG";
 const tipo = entry.data?.tipo || "Curso corto";
 const botonTexto = entry.data?.botonTexto || "ACCESO";
 
-// Imprimimos para confirmar en terminal
-console.log(`>>> PROCESANDO: ${title} | Imagen: ${typeof image}`);
+// Lógica para detectar si es un SVG problemático
+const isSvg = typeof image === 'string' && image.endsWith('.svg');
+const isValidAstroImage = image && typeof image === 'object';
 ---
 
 <div class="h-full m-2 bg-[#0f172a] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-2xl group">
   
   <div class="relative aspect-video bg-black overflow-hidden">
-    {image ? (
-      /* Si la imagen es un objeto procesable por Astro lo usamos, si es un string (SVG/Ruta) usamos <img> normal */
-      typeof image === 'object' ? (
+    {image && (
+      isValidAstroImage && !isSvg ? (
         <Image
-          class="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-500"
+          class="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-all duration-500"
           src={image}
           alt={title} 
           width={1280}
           height={720}
         />
       ) : (
+        /* Usamos img normal para SVGs o rutas de texto para evitar el error LocalImageUsedWrongly */
         <img 
-          src={image} 
+          src={typeof image === 'string' ? image : (image?.src || '')} 
           alt={title} 
           class="object-cover w-full h-full opacity-80" 
         />
       )
-    ) : null}
+    )}
     
     <div class="absolute top-2 right-2 z-10">
       <span class="bg-[#facc15] text-black text-[9px] font-black px-3 py-1 rounded-full uppercase shadow-xl">
@@ -60,7 +61,3 @@ console.log(`>>> PROCESANDO: ${title} | Imagen: ${typeof image}`);
     </div>
   </div>
 </div>
-
-<style>
-  .h-full { min-height: 400px; }
-</style>
