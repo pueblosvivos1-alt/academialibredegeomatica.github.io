@@ -1,18 +1,19 @@
 import { defineCollection, z } from 'astro:content';
 
 const docs = defineCollection({
-  schema: () => z.object({
+  // Quitamos la desestructuración de { image } para que no intente procesar nada
+  schema: z.object({
     title: z.string(),
     empresa: z.string().optional(),
     tipo: z.string().optional(),
     botonTexto: z.string().optional(),
-    image: z.any().optional(), // 'any' evita que Astro intente validar la imagen
+    image: z.any().optional(), // Aceptamos cualquier cosa (texto o ruta)
     weight: z.number().optional(),
   }),
 });
 
 const indexCards = defineCollection({
-  schema: () => z.object({
+  schema: z.object({
     title: z.string(),
     description: z.string().optional(),
     image: z.any().optional(),
@@ -20,4 +21,7 @@ const indexCards = defineCollection({
   }),
 });
 
-export const collections = { 'docs': docs, 'indexCards': indexCards };
+export const collections = {
+  'docs': docs,
+  'indexCards': indexCards,
+};
