@@ -7,7 +7,7 @@ const docs = defineCollection({
     empresa: z.string().optional(),
     tipo: z.string().optional(),
     botonTexto: z.string().optional(),
-    // IMPORTANTE: z.string() evita que Astro intente procesar la imagen
+    // Cambiado a z.string() para que Astro no intente procesar la imagen como archivo
     image: z.string().optional(), 
     weight: z.number().optional(),
   }),
@@ -23,7 +23,7 @@ const indexCards = defineCollection({
   }),
 });
 
-// 3. Exportación de colecciones con nombres exactos de carpetas
+// 3. Exportación de colecciones
 export const collections = { 
   'docs': docs, 
   'index-cards': indexCards 
