@@ -1,17 +1,26 @@
 ---
+// Recibimos la entrada de la colección
 const { entry } = Astro.props;
 
-// Extraemos los datos con valores de seguridad por si falta alguno en el Markdown
-const title = entry.data?.title || "Curso sin título";
-const empresa = entry.data?.empresa || "CAEG";
-const tipo = entry.data?.tipo || "Curso";
-const botonTexto = entry.data?.botonTexto || "ACCESO";
-const image = entry.data?.image;
+/**
+ * EXTRACCIÓN MANUAL DE DATOS
+ * Si el esquema en config.ts falló o se cambió, esto asegura que el componente
+ * no se rompa y que la terminal no valide la imagen como un objeto local.
+ */
+const { 
+  title = "Curso sin título", 
+  empresa = "CAEG", 
+  tipo = "Curso", 
+  botonTexto = "ACCESO" 
+} = entry.data || {};
 
-// Lógica de extracción de imagen: maneja texto directo o el objeto de Astro
+// Accedemos a la imagen de forma que Astro no la analice como Asset
+const rawImage = entry.data?.image;
 let imgSrc = "";
-if (image) {
-  imgSrc = typeof image === 'object' ? image.src : image;
+
+if (rawImage) {
+  // Si es un objeto (Astro Asset), sacamos .src. Si es texto, lo usamos directo.
+  imgSrc = typeof rawImage === 'object' ? rawImage.src : rawImage;
 }
 ---
 
@@ -21,12 +30,18 @@ if (image) {
     {imgSrc ? (
       <img 
         src={imgSrc} 
-        alt={`Portada del curso: ${title}`} 
+        alt={title} 
+        loading="lazy"
+        decoding="async"
         class="object-cover w-full h-full opacity-80 group-hover:scale-105 transition-transform duration-500" 
       />
     ) : (
-      /* Si no hay imagen, mostramos un fondo con un icono o texto */
-      <div class="text-slate-500 text-xs italic">Sin vista previa</div>
+      <div class="flex flex-col items-center text-slate-500 text-xs italic">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 mb-2 opacity-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        Sin vista previa
+      </div>
     )}
     
     <div class="absolute top-3 right-3 z-10">
@@ -37,7 +52,7 @@ if (image) {
   </div>
 
   <div class="p-5 flex flex-col flex-grow bg-gradient-to-b from-slate-900/50 to-[#0f172a]">
-    <h3 class="text-white font-bold text-base mb-4 leading-tight group-hover:text-blue-400 transition-colors">
+    <h3 class="text-white font-bold text-base mb-4 leading-tight group-hover:text-blue-400 transition-colors min-h-[3rem]">
       {title}
     </h3>
 
@@ -59,7 +74,6 @@ if (image) {
 </div>
 
 <style>
-  /* Mantenemos una altura mínima uniforme para que las tarjetas no bailen */
   .h-full {
     min-height: 420px;
   }
