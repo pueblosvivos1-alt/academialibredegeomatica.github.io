@@ -1,18 +1,18 @@
 ---
 const { entry } = Astro.props;
 
-// Extracción ultra-segura de datos
+// Extracción segura de datos del Markdown
 const title = entry.data?.title || "Sin título";
 const image = entry.data?.image;
 const empresa = entry.data?.empresa || "CAEG";
 const tipo = entry.data?.tipo || "Curso corto";
 const botonTexto = entry.data?.botonTexto || "ACCESO";
 
-// Procesamos la imagen para obtener la ruta correcta (sea objeto o texto)
+// Procesamos la imagen: si Astro la convirtió en objeto, usamos .src, si es texto, la usamos tal cual
 const imageSrc = image ? (typeof image === 'object' ? image.src : image) : null;
 ---
 
-<div class="h-full m-2 bg-[#0f172a] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-2xl group transition-all duration-300 hover:border-blue-500/40">
+<div class="h-full m-2 bg-[#0f172a] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-2xl group transition-all duration-300">
   
   <div class="relative aspect-video bg-black overflow-hidden">
     {imageSrc && (
@@ -24,7 +24,7 @@ const imageSrc = image ? (typeof image === 'object' ? image.src : image) : null;
     )}
     
     <div class="absolute top-3 right-3 z-10">
-      <span class="bg-[#facc15] text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-xl border border-yellow-600">
+      <span class="bg-[#facc15] text-black text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-xl">
         {tipo}
       </span>
     </div>
@@ -45,7 +45,7 @@ const imageSrc = image ? (typeof image === 'object' ? image.src : image) : null;
     </div>
 
     <div class="mt-auto">
-      <div class="w-full text-center bg-[#2563eb] hover:bg-blue-500 text-white text-xs font-black py-3 rounded-xl border-b-4 border-blue-800 shadow-lg transition-all active:translate-y-1 active:border-b-0">
+      <div class="w-full text-center bg-[#2563eb] text-white text-xs font-black py-3 rounded-xl border-b-4 border-blue-800 shadow-lg active:translate-y-1 active:border-b-0 transition-all">
         {botonTexto}
       </div>
     </div>
@@ -53,6 +53,7 @@ const imageSrc = image ? (typeof image === 'object' ? image.src : image) : null;
 </div>
 
 <style>
+  /* Asegura que todas las tarjetas tengan el mismo tamaño */
   .h-full {
     min-height: 420px;
   }

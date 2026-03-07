@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 
-// Colección para los Cursos
+// Colección para los Cursos (Carpeta content/docs)
 const docs = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
@@ -12,7 +12,8 @@ const docs = defineCollection({
   }),
 });
 
-// Colección para la Página de Inicio
+// Colección para la Inicio (Carpeta content/indexCards)
+// IMPORTANTE: Sin esto la página principal da error de "does not exist"
 const indexCards = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
@@ -24,5 +25,5 @@ const indexCards = defineCollection({
 
 export const collections = {
   'docs': docs,
-  'indexCards': indexCards, 
+  'indexCards': indexCards,
 };
