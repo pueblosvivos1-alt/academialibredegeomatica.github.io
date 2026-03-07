@@ -6,7 +6,7 @@ const docs = defineCollection({
     empresa: z.string().optional(),
     tipo: z.string().optional(),
     botonTexto: z.string().optional(),
-    image: z.any().optional(), // El 'any' es la clave para ignorar el error
+    image: z.string().optional(), // <--- Cambiado de 'image()' a 'z.string()'
     weight: z.number().optional(),
   }),
 });
@@ -15,7 +15,7 @@ const indexCards = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
-    image: z.any().optional(),
+    image: z.string().optional(), // <--- También aquí como string
     link: z.string().optional(),
   }),
 });
