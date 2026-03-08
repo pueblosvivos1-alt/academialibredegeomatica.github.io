@@ -3,18 +3,24 @@ import { getCollection, getEntry } from 'astro:content';
 import CollectionLayout from "@components/docs/CollectionLayout.astro";
 import type { DocsEntry } from "@/types";
 
-// 1. Traemos el índice de la colección (el archivo _index.md o similar)
-// Usamos getEntry porque es la forma nativa y segura de Astro
+// 1. Traemos el índice general de la colección si existe
 const collectionIndex = await getEntry('docs', '-index') as DocsEntry;
 
-// 2. Traemos todos los cursos de la carpeta 'docs'
+/**
+ * 2. FILTRO MAESTRO:
+ * Antes aceptábamos todo lo que NO empezara con "-".
+ * AHORA: Solo aceptamos archivos que TERMINEN en "-index".
+ * Esto garantiza que solo las 10 categorías principales se muestren en la galería,
+ * ignorando cursos individuales como "Analisis de peligros...".
+ */
 const allGroups = await getCollection('docs', ({ id }) => {
-  return !id.startsWith('-'); // Filtramos para que no incluya el archivo de configuración _index.md
+  // Filtramos para que SOLO incluya archivos que terminen en '-index' o '-index.md'
+  return id.endsWith('-index') || id.endsWith('-index.md');
 }) as DocsEntry[];
 
 // 3. Ordenamos manualmente por el campo 'weight'
 const groupIndices = allGroups.sort((a, b) => {
-  const weightA = a.data.weight ?? 99; // Usamos ?? para asegurar que si es 0, se respete
+  const weightA = a.data.weight ?? 99;
   const weightB = b.data.weight ?? 99;
   return weightA - weightB;
 });
