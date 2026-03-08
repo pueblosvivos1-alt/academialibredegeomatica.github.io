@@ -9,13 +9,18 @@ export async function getStaticPaths() {
   const entries = (await getEntries("docs", sortByTitle)) as DocsEntry[];
 
   return entries.map((entry) => {
-    // Si el ID termina en -index, es una categoría (Grupo)
-    const isGroup = entry.id.endsWith("-index");
+    // 1. Limpiamos el ID de la extensión .md para que Astro no se confunda
+    const cleanId = entry.id.replace(/\.md$/, "");
     
-    // Generamos la URL: si es categoría, quitamos el /-index para que la URL sea limpia
+    // 2. Identificamos si es una categoría (termina en -index)
+    const isGroup = cleanId.endsWith("-index");
+    
+    // 3. Definimos la URL (parámetro id)
+    // Si es grupo: "carpeta/-index" -> "carpeta"
+    // Si es curso: "carpeta/nombre-curso" -> "carpeta/nombre-curso"
     const idParam = isGroup 
-      ? entry.id.replace("/-index", "") 
-      : entry.id;
+      ? cleanId.replace("/-index", "") 
+      : cleanId;
 
     return {
       params: { id: idParam },
@@ -26,24 +31,24 @@ export async function getStaticPaths() {
 
 const { entry, isGroup } = Astro.props;
 
-// Obtenemos el nombre del grupo (el nombre de la carpeta)
-// Si el ID es "gestion-del-riesgo/-index", el grupo es "gestion-del-riesgo"
+// Extraemos el nombre de la carpeta para buscar sus archivos hijos
+// Ejemplo: de "gestion-riesgo/-index" extraemos "gestion-riesgo"
 const groupName = entry.id.includes('/') 
   ? entry.id.split('/')[0] 
-  : entry.id.replace("-index", "");
+  : entry.id.replace("-index", "").replace(".md", "");
 
-// Si es un grupo (Categoría), buscamos todos los archivos dentro de esa carpeta
+// Si estamos en una categoría, cargamos todos sus cursos
 const groupEntries = isGroup
   ? ((await getEntriesInGroup("docs", groupName, sortByTitle)) as DocsEntry[])
   : [];
 
-// Construir el menú del navegador lateral
+// Configuración del menú lateral (Browser Menu)
 const browserMenu: MenuItem[] = [];
 const groups = (await getGroups("docs", sortByTitle)) as DocsEntry[];
 
 await Promise.all(
   groups.map(async (group) => {
-    const cleanGroupId = group.id.replace("/-index", "");
+    const cleanGroupId = group.id.replace("/-index", "").replace(".md", "");
     const subEntries = (await getEntriesInGroup(
       "docs",
       cleanGroupId,
@@ -55,7 +60,7 @@ await Promise.all(
       id: cleanGroupId,
       children: subEntries.map((subEntry) => ({
         title: subEntry.data.title,
-        id: subEntry.id,
+        id: subEntry.id.replace(".md", ""),
         children: [],
       })),
     });
