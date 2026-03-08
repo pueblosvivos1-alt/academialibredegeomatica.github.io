@@ -7,19 +7,19 @@ export async function getStaticPaths() {
   const allEntries = await getCollection('docs');
   
   return allEntries.flatMap(entry => {
-    const isGroup = entry.id.includes("-index");
-    // Limpiamos el ID para crear rutas compatibles
+    // Quitamos la extensión y el -index
     const cleanId = entry.id.replace("/-index", "").replace(".md", "");
 
     return [
-      { params: { id: cleanId }, props: { entry, isGroup } },
-      { params: { id: cleanId.toLowerCase() }, props: { entry, isGroup } },
-      { params: { id: encodeURI(cleanId) }, props: { entry, isGroup } }
+      { params: { id: cleanId }, props: { entry } },
+      { params: { id: encodeURI(cleanId) }, props: { entry } },
+      { params: { id: cleanId.toLowerCase() }, props: { entry } }
     ];
   });
 }
 
-const { entry, isGroup } = Astro.props;
+const { entry } = Astro.props;
+const isGroup = entry.id.includes("-index");
 
 let groupEntries = [];
 if (isGroup) {

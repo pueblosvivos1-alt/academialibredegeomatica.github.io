@@ -2,23 +2,24 @@
 import { getCollection } from 'astro:content';
 const allDocs = await getCollection('docs');
 const docs = allDocs || [];
+
 // Extraemos carpetas únicas de forma segura
-const folders = [...new Set(docs.map(doc => doc.id.split('/')[0]))].filter(Boolean);
+const folders = [...new Set(docs.map(doc => doc.id.split('/')[0]))].filter(f => f !== "undefined");
 ---
 
 <div class="bg-slate-900/50 rounded-xl p-4 border border-white/10">
-  <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-widest opacity-50">Explorador de Cursos</h4>
+  <h4 class="text-white font-bold mb-4 text-[10px] uppercase tracking-widest opacity-50 text-center">Explorador</h4>
   <ul class="space-y-2">
     {folders.length > 0 ? folders.map(folder => (
       <li>
         <details class="group">
-          <summary class="text-slate-300 hover:text-white cursor-pointer list-none text-sm flex items-center gap-2">
-             <span class="group-open:rotate-90 transition-transform text-[10px]">▶</span> 📁 {folder}
+          <summary class="text-slate-300 hover:text-white cursor-pointer list-none text-xs flex items-center gap-2">
+             📁 {folder}
           </summary>
           <ul class="ml-4 mt-2 space-y-1 border-l border-white/5 pl-2">
             {docs.filter(d => d.id.startsWith(folder) && !d.id.includes('-index')).map(d => (
               <li>
-                <a href={`/docs/${d.id.replace('.md', '')}`} class="text-slate-400 hover:text-sky-400 text-xs block py-1">
+                <a href={`/docs/${d.id.replace('.md', '')}`} class="text-slate-400 hover:text-sky-400 text-[10px] block py-1">
                   📄 {d.data.title || d.id}
                 </a>
               </li>
@@ -26,6 +27,6 @@ const folders = [...new Set(docs.map(doc => doc.id.split('/')[0]))].filter(Boole
           </ul>
         </details>
       </li>
-    )) : <li class="text-slate-500 text-xs italic">Cargando contenido...</li>}
+    )) : <li class="text-slate-500 text-[10px] italic">No hay contenido disponible</li>}
   </ul>
 </div>
