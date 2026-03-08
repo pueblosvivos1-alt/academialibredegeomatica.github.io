@@ -1,17 +1,18 @@
 ---
 const { entry } = Astro.props;
 
-// Si por alguna razón no hay datos, no dibujamos nada para no romper la web
 if (!entry || !entry.data) return null;
 
 const { title, image, url_destino, botonTexto } = entry.data;
 
-// GENERACIÓN DE LA URL LIMPIA (Aquí está el truco para evitar el 404)
-// Quitamos el .md y cualquier espacio sobrante del ID del archivo
-const urlInterna = `/docs/${entry.id.replace(/\.md$/, '')}`;
+// --- CORRECCIÓN AQUÍ ---
+// 1. Quitamos el .md si existiera
+// 2. Si el ID termina en /index o es simplemente index, lo eliminamos para que la URL sea limpia
+const urlInterna = `/docs/${entry.id
+  .replace(/\.md$/, '')
+  .replace(/\/index$/, '')
+  .replace(/^index$/, '')}`;
 
-// Si el archivo tiene un link de YouTube (url_destino), lo usamos. 
-// Si no, usamos la ruta interna de la academia.
 const destinoFinal = url_destino || urlInterna;
 const esExterno = String(destinoFinal).startsWith('http');
 ---
