@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "@components/base/BaseLayout.astro";
+import { Image } from "astro:assets"; // Importamos el componente oficial
 const { entry } = Astro.props;
 
 if (!entry || !entry.data) return null;
@@ -17,8 +18,10 @@ const { Content } = await entry.render();
         <div class="mb-8">
           <img 
             src={image} 
-            alt={title || "Imagen del curso"} 
+            alt={title} 
             class="w-full h-auto rounded-xl shadow-lg border border-white/5"
+            loading="eager"
+            decoding="async"
           />
         </div>
       )}
