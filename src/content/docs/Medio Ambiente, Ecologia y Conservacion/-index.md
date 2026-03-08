@@ -1,6 +1,6 @@
 ---
 title: "."
 weight: 7
-image: "@assets/docs/medioambiente/7medioambiente.png"
+image: "/images/7medioambiente.png"
 description: " "
 ---
