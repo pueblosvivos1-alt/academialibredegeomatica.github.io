@@ -2,7 +2,6 @@
 const { entry } = Astro.props;
 if (!entry || !entry.data) return null;
 
-// Usamos nombres de variables distintos para evitar conflictos con el esquema
 const docTitle = entry.data.title;
 const docImage = entry.data.image;
 const docLinkExterno = entry.data.url_destino;
@@ -11,14 +10,12 @@ const docEmpresa = entry.data.empresa;
 
 const urlInternaRuta = `/docs/${entry.id.replace(/\.md$/, '').replace(/\/index$/, '').replace(/^index$/, '')}`;
 
-// Determinamos el destino final con prioridad absoluta al link externo
 const rutaFinalFinal = (docLinkExterno && docLinkExterno.trim().length > 0) 
   ? docLinkExterno.trim() 
   : urlInternaRuta;
 
 const esRutaExterna = rutaFinalFinal.startsWith('http');
 
-// Lógica para esconder datos en categorías
 const esPaginaIndex = entry.id.endsWith('index') || entry.id.endsWith('index.md');
 const verTipo = !esPaginaIndex && docTipo && docTipo.trim().length > 1;
 const verEmpresa = !esPaginaIndex && docEmpresa && docEmpresa.trim().length > 1;
@@ -32,7 +29,13 @@ const verEmpresa = !esPaginaIndex && docEmpresa && docEmpresa.trim().length > 1;
         {docTipo}
       </div>
     )}
-    {docImage && <img src={docImage} alt={docTitle} class="w-full h-full object-contain" />}
+    {docImage && (
+      <img 
+        src={docImage} 
+        alt={docTitle || "Miniatura del curso"} 
+        class="w-full h-full object-contain" 
+      />
+    )}
   </div>
 
   <div class="p-5 flex flex-col flex-grow text-center">
@@ -59,16 +62,14 @@ const verEmpresa = !esPaginaIndex && docEmpresa && docEmpresa.trim().length > 1;
     </div>
   </div>
 
-  {/* Solo creamos el link de fondo si NO hay destino externo */}
   {!docLinkExterno && (
     <a href={urlInternaRuta} class="absolute inset-0 z-10"></a>
   )}
 </div>
 
 <style>
-  /* Forzamos que el botón siempre esté arriba de cualquier link fantasma */
   .force-redirect {
     position: relative !important;
     z-index: 100 !important;
   }
-</style> 
+</style>
