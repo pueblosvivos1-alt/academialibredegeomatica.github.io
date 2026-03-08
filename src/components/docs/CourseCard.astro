@@ -4,7 +4,7 @@ if (!entry || !entry.data) return null;
 
 const { title, image, url_destino, botonTexto } = entry.data;
 
-// Forzamos una URL interna sin el .md al final
+// Limpiamos la URL interna de cualquier .md
 const urlInterna = `/docs/${entry.id.replace(/\.md$/, '')}`;
 const destinoFinal = url_destino || urlInterna;
 const esExterno = String(destinoFinal).startsWith('http');
@@ -15,7 +15,7 @@ const esExterno = String(destinoFinal).startsWith('http');
     {image ? (
       <img 
         src={image} 
-        alt={title || "Curso"} 
+        alt={title || "Imagen del curso"} 
         class="w-full h-full object-contain"
       />
     ) : (
@@ -33,7 +33,7 @@ const esExterno = String(destinoFinal).startsWith('http');
         href={destinoFinal}
         target={esExterno ? "_blank" : "_self"}
         rel={esExterno ? "noopener noreferrer" : ""}
-        class="block w-full text-center bg-[#2563eb] hover:bg-blue-500 text-white text-[10px] font-bold py-3 rounded-xl uppercase no-underline transition-all active:scale-95"
+        class="block w-full text-center bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-bold py-3 rounded-xl uppercase no-underline transition-all"
       >
         {url_destino ? "VER VIDEO" : (botonTexto || "ACCESO")}
       </a>

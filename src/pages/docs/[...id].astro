@@ -6,19 +6,15 @@ import EntryLayout from "@components/docs/EntryLayout.astro";
 export async function getStaticPaths() {
   const allEntries = await getCollection('docs');
   
-  return allEntries.flatMap(entry => {
-    // Generamos una ruta limpia quitando el .md y los espacios
-    const cleanId = entry.id.replace(/\.md$/, '');
-    
-    return [
-      { params: { id: cleanId }, props: { entry } },
-      { params: { id: encodeURI(cleanId) }, props: { entry } }
-    ];
-  });
+  return allEntries.map(entry => ({
+    // Usamos el ID original como ruta para asegurar compatibilidad
+    params: { id: entry.id.replace(/\.md$/, '') },
+    props: { entry }
+  }));
 }
 
 const { entry } = Astro.props;
-const isGroup = entry.id.includes("-index");
+const isGroup = entry.id.endsWith('-index.md') || entry.id.endsWith('-index');
 
 let groupEntries = [];
 if (isGroup) {
