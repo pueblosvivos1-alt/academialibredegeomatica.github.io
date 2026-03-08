@@ -4,42 +4,29 @@ if (!entry || !entry.data) return null;
 
 const { title, image, url_destino, botonTexto, tipo, empresa } = entry.data;
 
-/**
- * 🚀 LÓGICA DE DIRECCIONAMIENTO REFORZADA
- * Si hay una url_destino en el Markdown, el botón usará esa URL.
- * Si no la hay, el botón llevará a la página interna del curso.
- */
+// 1. Definimos las rutas
 const urlInterna = `/docs/${entry.id.replace(/\.md$/, '').replace(/\/index$/, '').replace(/^index$/, '')}`;
-
-// Forzamos el uso del link externo si existe y tiene texto real
-const tieneDestinoPersonalizado = url_destino && url_destino.trim().length > 0;
-const enlaceFinal = tieneDestinoPersonalizado ? url_destino.trim() : urlInterna;
-
-// Detectamos si es externo para abrir en pestaña nueva
+const tieneDestino = url_destino && url_destino.trim().length > 0;
+const enlaceFinal = tieneDestino ? url_destino.trim() : urlInterna;
 const esExterno = enlaceFinal.startsWith('http');
 
-const textoBoton = botonTexto || "ACCESO";
+// 2. Lógica de visualización
 const esCategoria = entry.id.endsWith('index') || entry.id.endsWith('index.md');
 const mostrarTipo = !esCategoria && tipo && tipo.trim().length > 1;
 const mostrarEmpresa = !esCategoria && empresa && empresa.trim().length > 1;
 ---
 
-<div class="h-full bg-[#1e293b] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-xl transition-all hover:border-blue-500/50 group">
+<div class="h-full bg-[#1e293b] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-xl transition-all hover:border-blue-500/50 group relative">
   
   <div class="relative aspect-video bg-slate-800 flex items-center justify-center p-2 overflow-hidden">
     {mostrarTipo && (
-      <div class="absolute top-3 right-3 z-10 bg-emerald-500 text-white text-[10px] font-black px-3 py-1.5 rounded-md shadow-lg tracking-wider uppercase">
+      <div class="absolute top-3 right-3 z-20 bg-emerald-500 text-white text-[10px] font-black px-3 py-1.5 rounded-md shadow-lg tracking-wider uppercase">
         {tipo}
       </div>
     )}
 
     {image ? (
-      <img 
-        src={image} 
-        alt={title} 
-        class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
-        loading="lazy"
-      />
+      <img src={image} alt={title} class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" />
     ) : (
       <div class="text-slate-600 text-xs italic">Sin imagen</div>
     )}
@@ -61,10 +48,14 @@ const mostrarEmpresa = !esCategoria && empresa && empresa.trim().length > 1;
         href={enlaceFinal} 
         target={esExterno ? "_blank" : "_self"}
         rel={esExterno ? "noopener noreferrer" : ""}
-        class="block w-full text-center bg-[#2563eb] hover:bg-blue-400 text-white text-[11px] font-bold py-3.5 rounded-xl uppercase no-underline shadow-lg transition-all active:scale-95"
+        class="relative z-30 block w-full text-center bg-[#2563eb] hover:bg-blue-400 text-white text-[11px] font-bold py-3.5 rounded-xl uppercase no-underline shadow-lg transition-all active:scale-95"
       >
-        {textoBoton}
+        {botonTexto || "ACCESO"}
       </a>
     </div>
   </div>
+
+  {!tieneDestino && (
+    <a href={urlInterna} class="absolute inset-0 z-10" aria-label={title}></a>
+  )}
 </div>
