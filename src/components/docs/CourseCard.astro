@@ -9,11 +9,8 @@ const destinoFinal = url_destino || urlInterna;
 const esExterno = String(destinoFinal).startsWith('http');
 const textoBoton = botonTexto || "ACCESO";
 
-// 🚀 EL TRUCO INFALIBLE: 
-// Detectamos si es una tarjeta de "Categoría" (porque su nombre de archivo termina en index)
 const esCategoria = entry.id.endsWith('index') || entry.id.endsWith('index.md');
 
-// Solo permitimos mostrar el Tipo y Empresa si NO es una categoría, y si tienen texto.
 const mostrarTipo = !esCategoria && tipo && tipo.trim().length > 1;
 const mostrarEmpresa = !esCategoria && empresa && empresa.trim().length > 1;
 ---
@@ -23,7 +20,7 @@ const mostrarEmpresa = !esCategoria && empresa && empresa.trim().length > 1;
   <div class="relative aspect-video bg-slate-800 flex items-center justify-center p-2 overflow-hidden">
     
     {mostrarTipo && (
-      <div class="absolute top-3 right-3 z-10 bg-emerald-500 text-white text-[9px] font-black px-2 py-1 rounded-md shadow-lg tracking-wider uppercase">
+      <div class="absolute top-3 right-3 z-10 bg-emerald-500 text-white text-[10px] font-black px-3 py-1.5 rounded-md shadow-lg tracking-wider uppercase">
         {tipo}
       </div>
     )}
@@ -43,12 +40,12 @@ const mostrarEmpresa = !esCategoria && empresa && empresa.trim().length > 1;
   <div class="p-5 flex flex-col flex-grow text-center">
     
     {mostrarEmpresa && (
-      <span class="text-blue-400 text-[10px] font-black tracking-[0.2em] uppercase mb-2 block opacity-80">
+      <span class="text-blue-300 text-xs font-black tracking-widest uppercase mb-3 block drop-shadow-md">
         {empresa}
       </span>
     )}
 
-    <h3 class="text-white font-bold text-sm mb-4 leading-tight min-h-[3rem] flex items-center justify-center">
+    <h3 class="text-white font-bold text-sm md:text-base mb-4 leading-tight min-h-[3rem] flex items-center justify-center">
       {title}
     </h3>
 
@@ -57,7 +54,7 @@ const mostrarEmpresa = !esCategoria && empresa && empresa.trim().length > 1;
         href={destinoFinal}
         target={esExterno ? "_blank" : "_self"}
         rel={esExterno ? "noopener noreferrer" : ""}
-        class="block w-full text-center bg-[#2563eb] hover:bg-blue-500 text-white text-[10px] font-bold py-3 rounded-xl uppercase no-underline shadow-lg transition-all active:scale-95"
+        class="block w-full text-center bg-[#2563eb] hover:bg-blue-400 text-white text-[11px] font-bold py-3 rounded-xl uppercase no-underline shadow-lg transition-all active:scale-95"
       >
         {textoBoton}
       </a>
