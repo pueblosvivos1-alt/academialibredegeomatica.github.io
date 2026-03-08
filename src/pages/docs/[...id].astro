@@ -3,47 +3,37 @@ import { getCollection } from 'astro:content';
 import CollectionLayout from "@components/docs/CollectionLayout.astro";
 import EntryLayout from "@components/docs/EntryLayout.astro";
 
-// 1. GENERACIÓN DE RUTAS DINÁMICAS
 export async function getStaticPaths() {
   const allEntries = await getCollection('docs');
   
   return allEntries.flatMap(entry => {
-    // Generamos varias opciones de ID para que el navegador siempre encuentre el archivo
-    const idSinExtension = entry.id.replace(/\.md$/, '');
-    
-    // Versión limpia (slug): minúsculas, sin espacios, sin caracteres raros
-    const idSlug = idSinExtension
-      .toLowerCase()
-      .replace(/\s+/g, '-')     
-      .replace(/[^\w-]/g, '');  
+    // Si el archivo es un index, la ruta debe ser el nombre de la carpeta
+    const isIndex = entry.id.endsWith('index.md') || entry.id.endsWith('index');
+    const path = isIndex 
+      ? entry.id.replace(/\/index$/, '').replace('index.md', '') 
+      : entry.id.replace(/\.md$/, '');
 
     return [
-      { params: { id: entry.id }, props: { entry } },       // Opción 1: original (con .md)
-      { params: { id: idSinExtension }, props: { entry } }, // Opción 2: sin .md
-      { params: { id: idSlug }, props: { entry } }         // Opción 3: limpia (slug)
+      { params: { id: path || undefined }, props: { entry } },
+      { params: { id: entry.id }, props: { entry } }
     ];
   });
 }
 
-// 2. PROCESAMIENTO DE LA ENTRADA ACTUAL
 const { entry } = Astro.props;
-
-// Corrección: Detectamos si es una carpeta (índice) de forma flexible
+// Detectamos si es un índice (página de grupo)
 const isGroup = entry.id.toLowerCase().includes("index");
 
 let groupEntries = [];
 if (isGroup) {
   const allDocs = await getCollection('docs');
-  // Obtenemos el nombre de la carpeta contenedora
+  // Obtenemos el nombre de la carpeta (ej: gestion-del-riesgo...)
   const folderName = entry.id.split('/')[0];
   
-  // Filtramos los archivos de esa carpeta que NO sean el índice
+  // Filtramos para mostrar los temas dentro de esa carpeta
   groupEntries = allDocs.filter(item => 
     item.id.startsWith(folderName) && !item.id.toLowerCase().includes("index")
   );
-  
-  // Opcional: Ordenar alfabéticamente por título
-  groupEntries.sort((a, b) => (a.data.title || "").localeCompare(b.data.title || ""));
 }
 ---
 
