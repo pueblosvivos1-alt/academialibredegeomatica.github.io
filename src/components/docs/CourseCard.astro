@@ -8,15 +8,8 @@ const tipo = data.tipo || "Curso";
 const botonTexto = data.botonTexto || "ACCESO";
 const image = data.image || "";
 
-/** * GENERACIÓN DE LA URL LIMPIA:
- * Transformamos el ID del archivo (ej: "Gestion del riesgo/Analisis.md")
- * en una URL que el navegador entienda (ej: "/docs/gestion-del-riesgo/analisis")
- */
-const cleanUrl = `/docs/${entry.id
-  .replace(".md", "")
-  .replace("/-index", "")
-  .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Quita tildes
-  .toLowerCase()}`;
+// Generamos la URL quitando el -index para que el botón sepa a dónde ir
+const cleanUrl = `/docs/${entry.id.replace("/-index", "")}`;
 ---
 
 <div class="h-full m-2 bg-[#0f172a] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-2xl group transition-all duration-300 hover:border-blue-500/50">
@@ -52,8 +45,8 @@ const cleanUrl = `/docs/${entry.id
 
     <div class="mt-auto">
       <a 
-        href={cleanUrl} 
-        class="block w-full text-center bg-[#2563eb] hover:bg-blue-500 text-white text-xs font-black py-3 rounded-xl border-b-4 border-blue-800 shadow-lg active:translate-y-1 active:border-b-0 transition-all uppercase no-underline"
+        href={cleanUrl}
+        class="block w-full text-center bg-[#2563eb] hover:bg-blue-500 text-white text-xs font-black py-3 rounded-xl border-b-4 border-blue-800 shadow-lg active:translate-y-1 active:border-b-0 transition-all uppercase no-underline cursor-pointer"
       >
         {botonTexto}
       </a>
