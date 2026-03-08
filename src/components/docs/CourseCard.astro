@@ -1,26 +1,24 @@
 ---
 const { entry } = Astro.props;
-
 if (!entry || !entry.data) return null;
 
 const { title, image, url_destino, botonTexto, tipo, empresa } = entry.data;
 
-// 1. Generación de URL limpia
-const urlInterna = `/docs/${entry.id
-  .replace(/\.md$/, '')
-  .replace(/\/index$/, '')
-  .replace(/^index$/, '')}`;
-
+const urlInterna = `/docs/${entry.id.replace(/\.md$/, '').replace(/\/index$/, '').replace(/^index$/, '')}`;
 const destinoFinal = url_destino || urlInterna;
 const esExterno = String(destinoFinal).startsWith('http');
 const textoBoton = botonTexto || "ACCESO";
+
+// Funciones de validación interna
+const tieneTipo = tipo && tipo.trim().length > 1;
+const tieneEmpresa = empresa && empresa.trim().length > 1;
 ---
 
 <div class="h-full bg-[#1e293b] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-xl transition-all hover:border-blue-500/50 group">
   
   <div class="relative aspect-video bg-slate-800 flex items-center justify-center p-2 overflow-hidden">
     
-    {tipo && tipo.trim() !== "" && (
+    {tieneTipo && (
       <div class="absolute top-3 right-3 z-10 bg-emerald-500 text-white text-[9px] font-black px-2 py-1 rounded-md shadow-lg tracking-wider uppercase">
         {tipo}
       </div>
@@ -40,7 +38,7 @@ const textoBoton = botonTexto || "ACCESO";
 
   <div class="p-5 flex flex-col flex-grow text-center">
     
-    {empresa && empresa.trim() !== "" && (
+    {tieneEmpresa && (
       <span class="text-blue-400 text-[10px] font-black tracking-[0.2em] uppercase mb-2 block opacity-80">
         {empresa}
       </span>
