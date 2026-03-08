@@ -1,17 +1,19 @@
 ---
-import { getCollection, getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import CollectionLayout from "@components/docs/CollectionLayout.astro";
 import EntryLayout from "@components/docs/EntryLayout.astro";
-import type { DocsEntry } from "@/types";
 
 export async function getStaticPaths() {
   const allEntries = await getCollection('docs');
   
   return allEntries.map(entry => {
-    // 1. Limpiamos el ID de extensiones y del sufijo -index
-    const cleanId = entry.id.replace(/\.md$/, "").replace("/-index", "");
-    
-    // 2. Determinamos si es un grupo (categoría) o un curso individual
+    // FUNCIÓN DE LIMPIEZA: Quitamos tildes, comas y extensiones
+    const cleanId = entry.id
+      .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Quita tildes
+      .replace(/\.md$/, "")                            // Quita .md
+      .replace("/-index", "")                          // Quita el sufijo de carpeta
+      .toLowerCase();                                  // Todo a minúsculas para evitar fallos
+
     const isGroup = entry.id.includes("-index");
 
     return {
@@ -23,19 +25,17 @@ export async function getStaticPaths() {
 
 const { entry, isGroup } = Astro.props;
 
-// Lógica para obtener los hijos si es un grupo
-let groupEntries: DocsEntry[] = [];
+let groupEntries = [];
 if (isGroup) {
   const allDocs = await getCollection('docs');
-  // Obtenemos el nombre de la carpeta (ej: "Gestion del riesgo")
   const folderName = entry.id.split('/')[0];
   
-  // Filtramos: que estén en la misma carpeta y que NO sean el índice
+  // Filtramos los cursos que pertenecen a esta categoría
   groupEntries = allDocs.filter(item => 
     item.id.startsWith(folderName) && !item.id.includes("-index")
-  ) as DocsEntry[];
+  );
 
-  // Ordenamos por weight
+  // Ordenamos por peso (el orden que viste que ya funcionaba)
   groupEntries.sort((a, b) => (a.data.weight ?? 99) - (b.data.weight ?? 99));
 }
 ---
