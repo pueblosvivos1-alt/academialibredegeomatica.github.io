@@ -5,14 +5,21 @@ import EntryLayout from "@components/docs/EntryLayout.astro";
 
 export async function getStaticPaths() {
   const allEntries = await getCollection('docs');
-  return allEntries.map(entry => ({
-    params: { id: entry.id.replace(/\.md$/, '') },
-    props: { entry }
-  }));
+  
+  return allEntries.map(entry => {
+    // Usamos el ID exacto del archivo para la ruta
+    const pathId = entry.id.replace(/\.md$/, '');
+    
+    return {
+      params: { id: pathId },
+      props: { entry }
+    };
+  });
 }
 
 const { entry } = Astro.props;
-const isGroup = entry.id.includes("-index");
+// Verificamos si es un índice de categoría
+const isGroup = entry.id.endsWith('-index.md') || entry.id.endsWith('-index');
 
 let groupEntries = [];
 if (isGroup) {
@@ -21,7 +28,6 @@ if (isGroup) {
   groupEntries = allDocs.filter(item => 
     item.id.startsWith(folderName) && !item.id.includes("-index")
   );
-  groupEntries.sort((a, b) => (a.data.weight ?? 99) - (b.data.weight ?? 99));
 }
 ---
 
