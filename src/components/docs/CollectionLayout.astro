@@ -1,53 +1,49 @@
 ---
 import BaseLayout from "@components/base/BaseLayout.astro";
-import DocCard from "@components/docs/Card.astro";
-import CourseCard from "@components/docs/CourseCard.astro";
-import PageHeader from "@components/common/PageHeader.astro";
-import type { DocsEntry } from "@/types";
+import CourseCard from "./CourseCard.astro";
 
-interface Props {
-  collectionIndex: DocsEntry;
-  entries: DocsEntry[];
+// Extraemos las propiedades que vienen desde [...id].astro
+const { collectionIndex, entries } = Astro.props;
+
+// BLOQUE DE SEGURIDAD: 
+// Si por algún error de ruta 'collectionIndex' llega vacío, 
+// evitamos que la web se rompa (el error 'reading data' que tenías).
+if (!collectionIndex || !collectionIndex.data) {
+  return null; 
 }
 
-const { collectionIndex, entries } = Astro.props;
+const { title, description } = collectionIndex.data;
 ---
 
-<BaseLayout
-  title={collectionIndex.data.title}
-  image={collectionIndex.data.image}
-  description={collectionIndex.data.description}
->
-  <PageHeader title={collectionIndex.data.title} />
-  
-  <section class="section py-12 bg-[#0f172a]">
+<BaseLayout title={title} description={description}>
+  <section class="py-12 bg-[#0f172a] min-h-screen">
     <div class="container mx-auto px-4">
-      <div class="flex flex-wrap -mx-2">
-        {
-          entries.length > 0 ? (
-            entries.map((entry) => {
-              // Si el ID contiene "-index", renderizamos la tarjeta de categoría (DocCard)
-              // Si NO lo contiene, es un curso individual y usamos CourseCard
-              const isCategory = entry.id.includes("-index");
+      
+      <div class="max-w-3xl mb-12">
+        <nav class="mb-4">
+          <a href="/docs" class="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-2 transition-colors">
+            ← Volver a Cursos
+          </a>
+        </nav>
+        <h1 class="text-4xl font-bold text-white mb-4 tracking-tight">
+          {title}
+        </h1>
+        {description && <p class="text-slate-400 text-lg leading-relaxed">{description}</p>}
+      </div>
 
-              return (
-                <div class="w-full md:w-1/2 lg:w-1/3 p-2">
-                  {isCategory ? (
-                    <DocCard entry={entry} />
-                  ) : (
-                    <CourseCard entry={entry} />
-                  )}
-                </div>
-              );
-            })
-          ) : (
-            <div class="w-full text-center py-20">
-              <p class="text-slate-400 text-lg italic">
-                Aún no hay cursos disponibles en esta categoría.
-              </p>
-            </div>
-          )
-        }
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {entries && entries.length > 0 ? (
+          entries.map((course) => (
+            <CourseCard entry={course} />
+          ))
+        ) : (
+          /* Mensaje si la carpeta está vacía */
+          <div class="col-span-full py-20 text-center border-2 border-dashed border-slate-800 rounded-3xl">
+            <p class="text-slate-500 italic text-lg">
+              Próximamente estaremos subiendo contenido para esta sección.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   </section>
