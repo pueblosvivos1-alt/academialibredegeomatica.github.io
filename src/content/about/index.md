@@ -1,7 +1,6 @@
 ---
 title: Nosotros
 description: Academía Libre de Geomática - Nuestra Historia
-image: "../../assets/profile/jane-doe.jpg"
 image_alt: "Retrato de la dirección de la academia" # <--- AÑADE ESTA LÍNEA
 draft: false
 ---
