@@ -21,9 +21,10 @@ const verTipo = !esPaginaIndex && docTipo && docTipo.trim().length > 1;
 const verEmpresa = !esPaginaIndex && docEmpresa && docEmpresa.trim().length > 1;
 ---
 
-<div class="card-wrapper h-full bg-[#1e293b] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-xl relative group">
+<div class="card-wrapper h-full bg-[#1e293b] border border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-xl relative group transition-all duration-300 hover:border-blue-500/50">
   
-  <div class="relative aspect-video bg-slate-800 flex items-center justify-center p-2 overflow-hidden">
+  {/* Contenedor de Imagen con altura fija para consistencia */}
+  <div class="relative aspect-video bg-slate-900/50 flex items-center justify-center p-2 overflow-hidden border-b border-white/5">
     {verTipo && (
       <div class="absolute top-3 right-3 z-50 bg-emerald-500 text-white text-[10px] font-black px-3 py-1.5 rounded-md shadow-lg uppercase">
         {docTipo}
@@ -33,11 +34,12 @@ const verEmpresa = !esPaginaIndex && docEmpresa && docEmpresa.trim().length > 1;
       <img 
         src={docImage} 
         alt={docTitle || "Miniatura del curso"} 
-        class="w-full h-full object-contain" 
+        class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
       />
     )}
   </div>
 
+  {/* Cuerpo de la tarjeta: flex-grow es vital aquí */}
   <div class="p-5 flex flex-col flex-grow text-center">
     {verEmpresa && (
       <span class="text-cyan-400 text-sm font-black tracking-[0.3em] uppercase mb-3 block drop-shadow-md">
@@ -45,28 +47,30 @@ const verEmpresa = !esPaginaIndex && docEmpresa && docEmpresa.trim().length > 1;
       </span>
     )}
 
+    {/* Título: El min-h asegura que nombres cortos y largos ocupen el mismo espacio */}
     <h3 class="text-white font-bold text-base mb-4 leading-tight min-h-[3.5rem] flex items-center justify-center px-2">
       {docTitle}
     </h3>
 
+    {/* El mt-auto empuja el botón siempre al final de la tarjeta */}
     <div class="mt-auto pt-2">
       <a 
         href={rutaFinalFinal}
         target={esRutaExterna ? "_blank" : "_self"}
         rel="noopener noreferrer"
-        onclick={esRutaExterna ? "event.stopPropagation();" : ""}
-        class="force-redirect relative z-[100] block w-full text-center bg-[#2563eb] hover:bg-blue-400 text-white text-[11px] font-bold py-3.5 rounded-xl uppercase no-underline"
+        class="force-redirect relative z-[100] block w-full text-center bg-[#2563eb] hover:bg-blue-400 text-white text-[11px] font-bold py-3.5 rounded-xl uppercase no-underline transition-colors"
       >
         {entry.data.botonTexto || "ACCESO"}
       </a>
     </div>
   </div>
 
+  {/* Link invisible que cubre toda la tarjeta excepto el botón */}
   {!docLinkExterno && (
-    <a href={urlInternaRuta} class="absolute inset-0 z-10"></a>
+    <a href={urlInternaRuta} class="absolute inset-0 z-10" aria-label={docTitle}></a>
   )}
 </div>
-// cambio de prueba.
+
 <style>
   .force-redirect {
     position: relative !important;
