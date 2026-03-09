@@ -1,12 +1,24 @@
-echo '---
-import { getEntry } from "astro:content";
-import EntryLayout from "@components/about/EntryLayout.astro";
+---
+import BaseLayout from "@components/base/BaseLayout.astro";
+import { getEntry, render } from 'astro:content';
 
-const entry = await getEntry("about", "index");
+const entry = await getEntry('about', 'index');
 
+// Si no encuentra el archivo, mostrará este mensaje en lugar de romper la web
 if (!entry) {
-  throw new Error("No se encontró el archivo src/content/about/index.md");
+  return Astro.redirect('/404');
 }
+
+const { Content } = await render(entry);
 ---
 
-<EntryLayout entry={entry} />' > src/pages/about.astro && git add src/pages/about.astro && git commit -m "Forzando uso de getEntry en about.astro" && git push origin main
+<BaseLayout title={entry.data.title}>
+  <section class="py-12 bg-[#0f172a] text-white">
+    <div class="container mx-auto px-4">
+      <h1 class="text-4xl font-bold mb-6">{entry.data.title}</h1>
+      <div class="prose prose-invert">
+        <Content />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
