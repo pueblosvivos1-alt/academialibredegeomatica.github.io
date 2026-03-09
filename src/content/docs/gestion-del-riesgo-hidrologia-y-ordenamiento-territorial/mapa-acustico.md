@@ -1,5 +1,5 @@
 ---
-title: "Mapa Acustico"
+title: "Mapa Acústico"
 empresa: "U-CIENCY"
 tipo: "Curso corto"
 image: "/images/29portada.jpg"
