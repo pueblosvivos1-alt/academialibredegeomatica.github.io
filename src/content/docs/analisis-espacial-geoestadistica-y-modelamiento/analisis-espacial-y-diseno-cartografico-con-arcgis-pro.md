@@ -4,6 +4,6 @@ empresa: "Instituto Cientifico del Pacífico"
 tipo: "Curso premium"
 image: "/images/101portada.jpg"
 botonTexto: "ACCESO"
-url_destino: "https://mega.nz/folder/zyxUGYBT#NT7-7RU_CzKQicvDe4rexw"
+url_destino: "https://docs.google.com/forms/d/e/1FAIpQLSf8SyIco71F9ePWb4zinFwSL3H2sSMy-BG80ye95xEcSkmqkw/viewform?usp=header"
 weight: 11
 ---
