@@ -1,9 +1,8 @@
 ---
 import BaseLayout from "@components/base/BaseLayout.astro";
 
-// Datos de la página
-const title = "Sobre la Academia Libre de Geomática";
-const description = "Conoce nuestra misión de democratizar el conocimiento geoespacial a través del intercambio colaborativo.";
+const title = "Bienvenidos a este pequeño rincón de la Geomática";
+const description = "Un manifiesto sobre el intercambio de conocimiento, los SIG y la comunidad geoespacial.";
 ---
 
 <BaseLayout title={title} description={description}>
@@ -13,36 +12,94 @@ const description = "Conoce nuestra misión de democratizar el conocimiento geoe
       <img 
         src="https://www.transparenttextures.com/patterns/world-map.png" 
         class="w-full h-full object-cover filter invert"
-        alt="Mapa de fondo"
+        alt="Fondo decorativo"
       />
     </div>
 
-    <div class="container mx-auto px-4 max-w-4xl relative z-10">
+    <div class="container mx-auto px-4 max-w-3xl relative z-10">
       
-      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8 tracking-tight border-b border-blue-500 pb-6">
+      <h1 class="text-3xl md:text-5xl font-black text-white mb-10 leading-tight tracking-tight border-b border-blue-500 pb-8">
         {title}
       </h1>
 
-      <div class="rounded-3xl overflow-hidden mb-12 shadow-2xl border border-white/10 group">
+      <div class="rounded-3xl overflow-hidden mb-16 shadow-2xl border border-white/10">
         <img 
           src="/images/ALG.jpg" 
-          alt="Academia Libre de Geomática - Cabecera" 
-          class="w-full h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
+          alt="Academia Libre de Geomática" 
+          class="w-full h-[400px] object-cover"
         />
       </div>
 
-      <div class="space-y-8 text-lg text-slate-300 leading-relaxed">
+      <div class="prose prose-invert prose-lg max-w-none text-slate-300 space-y-8 leading-relaxed">
         
         <p>
-          La <strong>Academia Libre de Geomática</strong> es un espacio dedicado a la formación técnica avanzada en ciencias de la tierra. Nuestra misión es eliminar las barreras económicas y geográficas que limitan el acceso al software especializado, proporcionando herramientas críticas para el desarrollo profesional en el sector geoespacial.
+          Si llegaste hasta aquí, probablemente compartes algo con nosotros: <strong>curiosidad por los SIG, la teledetección, el análisis espacial</strong> o cualquier herramienta que nos ayude a entender mejor el territorio.
         </p>
 
         <p>
-          Nos especializamos en la enseñanza práctica de <strong>Sistemas de Información Geográfica (SIG)</strong>, Teledetección y modelamiento hidrológico. Entendemos que el dominio de herramientas como QGIS, ArcGIS Pro y el procesamiento de imágenes satelitales es fundamental para enfrentar los retos actuales en la gestión del territorio y la prevención de riesgos.
+          Esta página nace con una idea muy simple: <strong>intercambiar conocimiento.</strong> Aquí difundimos y compartimos cursos, materiales y formaciones relacionadas con SIG y geomática. No es una tienda, no es una plataforma de ventas y tampoco pretende ser un negocio. Es, más bien, un espacio donde la comunidad puede subir, descargar y circular cursos para que más personas puedan aprender.
+        </p>
+
+        <div class="bg-blue-900/10 border-l-4 border-blue-500 p-6 my-8 rounded-r-xl">
+          <p class="text-white font-medium italic">
+            "Ahora bien, antes de que aparezca el primer comentario indignado sobre derechos de autor, digámoslo con claridad: sí, el tema existe y lo entendemos perfectamente."
+          </p>
+        </div>
+
+        <p>
+          Los cursos tienen autores, esfuerzo detrás y empresas que los producen. Pero también existe otra realidad que muchos estudiantes conocen bien: <strong>no todos los cursos que se venden cumplen lo que prometen.</strong>
+        </p>
+
+        <ul class="space-y-4 list-none pl-0">
+          <li class="flex items-start gap-3">
+            <span class="text-blue-500 mt-1">▹</span> <span>A veces prometen mentorías que nunca llegan.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-blue-500 mt-1">▹</span> <span>A veces los videos desaparecen antes del tiempo anunciado.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-blue-500 mt-1">▹</span> <span>A veces el material “completo” termina siendo solo algunos archivos sueltos.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-blue-500 mt-1">▹</span> <span>Y en muchos casos, lo que parecía una experiencia de aprendizaje termina siendo solo la compra de una <strong>carpeta de videos.</strong></span>
+          </li>
+        </ul>
+
+        <p>
+          No hablamos de todas las empresas, claro. Hay excelentes proyectos educativos allá afuera. Pero también existen los famosos <strong>vende-humo del conocimiento geoespacial.</strong> En ese contexto, este espacio también busca generar una pequeña reflexión: quizás el futuro del aprendizaje en geomática no está solo en vender cursos, sino en <strong>crear verdaderas comunidades de aprendizaje</strong>, donde compartir, practicar y discutir sea tan importante como ver un video.
         </p>
 
         <p>
-          Lo que nos hace diferentes es nuestro modelo de <strong>intercambio colaborativo</strong>. Promovemos una comunidad donde cada estudiante no solo recibe contenido de alta calidad, sino que también contribuye al crecimiento del repositorio compartiendo recursos técnicos. Este ciclo de aprendizaje mutuo garantiza que nuestro material se mantenga actualizado y diversificado.
+          Curiosamente, este tipo de intercambio también tiene otro efecto: termina dando más visibilidad a los mismos autores y empresas que crean los cursos. Reconocemos su trabajo, mencionamos su origen y muchas personas llegan a ellos gracias a estos circuitos informales.
         </p>
 
-        <div class="p-8 bg-blue-900/20 rounded-2xl border-l-4 border-blue
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 py-6">
+          <div class="bg-slate-800/50 p-4 rounded-xl text-center border border-white/5">La música con el MP3</div>
+          <div class="bg-slate-800/50 p-4 rounded-xl text-center border border-white/5">Las series globales</div>
+          <div class="bg-slate-800/50 p-4 rounded-xl text-center border border-white/5">Circulación libre</div>
+        </div>
+
+        <p>
+          Así que aquí estamos: un pequeño experimento comunitario en el mundo de la geomática.
+        </p>
+
+        <div class="space-y-6 py-4">
+          <p><strong>Si tienes cursos o materiales que quieras compartir, súbelos.</strong></p>
+          <p><strong>Si estás aprendiendo, descarga y explora.</strong></p>
+          <p><strong>Si sabes más que otros, ayuda y comenta.</strong></p>
+        </div>
+
+        <p>
+          La idea es simple: <strong>construir una comunidad real de aprendizaje geoespacial.</strong> Y por supuesto, también aceptamos comentarios, sugerencias, críticas constructivas… y hasta amenazas moderadas (preferiblemente en tono académico).
+        </p>
+
+        <div class="pt-10 border-t border-white/10 mt-12">
+          <p class="text-xl font-bold text-blue-400">Saludos,</p>
+          <p class="text-2xl font-black text-white uppercase tracking-widest mt-2">
+            y que los datos espaciales estén siempre de tu lado.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
