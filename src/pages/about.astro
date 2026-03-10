@@ -2,35 +2,27 @@
 import BaseLayout from "@components/base/BaseLayout.astro";
 
 const title = "Bienvenidos a este pequeño rincón de la Geomática";
-const description = "Un manifiesto sobre el intercambio de conocimiento, los SIG y la comunidad geoespacial en la Academia Libre de Geomática.";
+const description = "Sobre la Academia Libre de Geomática y nuestro manifiesto de intercambio de conocimiento.";
 ---
 
 <BaseLayout title={title} description={description}>
-  <section class="relative py-16 bg-[#0f172a] min-h-screen overflow-hidden">
+  <section class="relative py-16 bg-[#0f172a] min-h-screen">
     
-    <div class="absolute inset-0 opacity-5 pointer-events-none">
-      <img 
-        src="https://www.transparenttextures.com/patterns/world-map.png" 
-        class="w-full h-full object-cover filter invert"
-        alt="Fondo decorativo de mapa"
-      />
-    </div>
-
-    <div class="container mx-auto px-4 max-w-3xl relative z-10">
+    <div class="container mx-auto px-4 max-w-3xl">
       
-      <h1 class="text-3xl md:text-5xl font-black text-white mb-10 leading-tight tracking-tight border-b border-blue-500 pb-8">
+      <h1 class="text-3xl md:text-5xl font-bold text-white mb-10 leading-tight border-b border-blue-500 pb-8">
         {title}
       </h1>
 
-      <div class="rounded-3xl overflow-hidden mb-16 shadow-2xl border border-white/10 group">
+      <div class="rounded-3xl overflow-hidden mb-12 shadow-2xl border border-white/10">
         <img 
           src="/images/ALG.jpg" 
-          alt="Academia Libre de Geomática - Comunidad" 
-          class="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+          alt="Academia Libre de Geomática" 
+          class="w-full h-auto object-cover"
         />
       </div>
 
-      <div class="prose prose-invert prose-lg max-w-none text-slate-300 space-y-8 leading-relaxed text-justify">
+      <div class="text-slate-300 text-lg md:text-xl space-y-6 leading-relaxed">
         
         <p>
           Si llegaste hasta aquí, probablemente compartes algo con nosotros: <strong>curiosidad por los SIG, la teledetección, el análisis espacial</strong> o cualquier herramienta que nos ayude a entender mejor el territorio.
@@ -40,18 +32,25 @@ const description = "Un manifiesto sobre el intercambio de conocimiento, los SIG
           Esta página nace con una idea muy simple: <strong>intercambiar conocimiento.</strong> Aquí difundimos y compartimos cursos, materiales y formaciones relacionadas con SIG y geomática. No es una tienda, no es una plataforma de ventas y tampoco pretende ser un negocio. Es, más bien, un espacio donde la comunidad puede subir, descargar y circular cursos para que más personas puedan aprender.
         </p>
 
-        <div class="bg-blue-900/10 border-l-4 border-blue-500 p-6 my-8 rounded-r-xl shadow-lg">
-          <p class="text-white font-medium italic mb-0">
-            "Ahora bien, antes de que aparezca el primer comentario indignado sobre derechos de autor, digámoslo con claridad: sí, el tema existe y lo entendemos perfectamente."
-          </p>
-        </div>
-
         <p>
-          Los cursos tienen autores, esfuerzo detrás y empresas que los producen. Pero también existe otra realidad que muchos estudiantes conocen bien: <strong>no todos los cursos que se venden cumplen lo que prometen.</strong>
+          Ahora bien, antes de que aparezca el primer comentario indignado sobre derechos de autor, digámoslo con claridad: <strong>sí, el tema existe y lo entendemos perfectamente.</strong> Los cursos tienen autores, esfuerzo detrás y empresas que los producen.
         </p>
 
-        <ul class="space-y-4 list-none pl-0 my-8">
-          <li class="flex items-start gap-3">
-            <span class="text-blue-500 font-bold text-xl">▹</span> 
-            <span>A veces prometen mentorías que nunca llegan.</span>
-          </li>
+        <p>
+          Pero también existe otra realidad que muchos estudiantes conocen bien: no todos los cursos que se venden cumplen lo que prometen.
+        </p>
+
+        <p>
+          A veces prometen mentorías que nunca llegan.
+        </p>
+
+        <p>
+          A veces los videos desaparecen antes del tiempo anunciado.
+        </p>
+
+        <p>
+          A veces el material “completo” termina siendo solo algunos archivos sueltos.
+        </p>
+
+        <p>
+          Y en muchos casos, lo que parecía una experiencia de aprendizaje termina siendo solo la compra
