@@ -1,13 +1,48 @@
 ---
-import { getEntry, render } from "astro:content";
-const entry = await getEntry("about", "index");
-if (!entry) { return Astro.redirect("/404"); }
-const { Content } = await render(entry);
+import BaseLayout from "@components/base/BaseLayout.astro";
+
+// Definimos los datos directamente aquí para evitar errores de base de datos
+const title = "Sobre la Academia Libre de Geomática";
+const description = "Nuestra misión es democratizar el acceso al conocimiento geoespacial de alta calidad.";
 ---
-<html lang="es">
-  <head><title>{entry.data.title}</title></head>
-  <body style="background: #0f172a; color: white; font-family: sans-serif; padding: 2rem;">
-    <h1>{entry.data.title}</h1>
-    <Content />
-  </body>
-</html>
+
+<BaseLayout title={title} description={description}>
+  <section class="py-16 bg-[#0f172a] min-h-screen">
+    <div class="container mx-auto px-4 max-w-4xl">
+      
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-8 tracking-tight border-b border-blue-500 pb-6">
+        {title}
+      </h1>
+
+      <div class="rounded-3xl overflow-hidden mb-12 shadow-2xl border border-white/10 group">
+        <img 
+          src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=1600" 
+          alt="Tecnología Geomática" 
+          class="w-full h-[450px] object-cover transition-transform duration-700 group-hover:scale-105"
+        />
+      </div>
+
+      <div class="space-y-8 text-lg text-slate-300 leading-relaxed">
+        
+        <p>
+          La <strong>Academia Libre de Geomática</strong> nació con el firme propósito de romper las barreras del aprendizaje técnico en el área de las ciencias de la tierra. Creemos que el manejo de herramientas SIG, Teledetección y Fotogrametría no debe ser un privilegio, sino una habilidad accesible para todo profesional y estudiante.
+        </p>
+
+        <p>
+          Nuestra metodología se basa en el <strong>intercambio de conocimiento colaborativo</strong>. A través de nuestra plataforma, facilitamos el acceso a recursos de alta calidad, permitiendo que la comunidad crezca compartiendo sus propias experiencias y materiales académicos en formatos accesibles como Google Drive y MEGA.
+        </p>
+
+        <p>
+          Nos especializamos en el uso de software líder en la industria como <strong>QGIS, ArcGIS Pro y herramientas de análisis geoestadístico</strong>. Cada curso y recurso listado en nuestra web ha sido seleccionado para ofrecer soluciones reales a problemas territoriales, de gestión de riesgos e hidrología.
+        </p>
+
+        <div class="p-8 bg-blue-900/20 rounded-2xl border-l-4 border-blue-500 mt-12">
+          <p class="text-white italic font-medium">
+            "Nuestra visión es consolidarnos como el repositorio de conocimiento geoespacial más grande y dinámico, donde el único requisito para aprender sea el deseo de colaborar con los demás."
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>
