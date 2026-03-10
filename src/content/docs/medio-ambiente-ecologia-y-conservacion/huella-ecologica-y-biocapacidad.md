@@ -4,6 +4,6 @@ empresa: "U-CIENCY"
 tipo: "Curso corto"
 image: "/images/32portada.jpg"
 botonTexto: "ACCESO"
-url_destino: "https://docs.google.com/forms/d/e/1FAIpQLSf8SyIco71F9ePWb4zinFwSL3H2sSMy-BG80ye95xEcSkmqkw/viewform?usp=header"
+url_destino: "https://mega.nz/folder/XAk0WS5Q#tQGBvB18feAOnDtbehr-sw"
 weight: 8
 ---
