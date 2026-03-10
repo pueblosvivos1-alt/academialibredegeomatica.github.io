@@ -2,7 +2,7 @@
 import BaseLayout from "@components/base/BaseLayout.astro";
 
 const title = "Bienvenidos a este pequeño rincón de la Geomática";
-const description = "Un manifiesto sobre el intercambio de conocimiento, los SIG y la comunidad geoespacial.";
+const description = "Un manifiesto sobre el intercambio de conocimiento, los SIG y la comunidad geoespacial en la Academia Libre de Geomática.";
 ---
 
 <BaseLayout title={title} description={description}>
@@ -12,7 +12,7 @@ const description = "Un manifiesto sobre el intercambio de conocimiento, los SIG
       <img 
         src="https://www.transparenttextures.com/patterns/world-map.png" 
         class="w-full h-full object-cover filter invert"
-        alt="Fondo decorativo"
+        alt="Fondo decorativo de mapa"
       />
     </div>
 
@@ -22,15 +22,15 @@ const description = "Un manifiesto sobre el intercambio de conocimiento, los SIG
         {title}
       </h1>
 
-      <div class="rounded-3xl overflow-hidden mb-16 shadow-2xl border border-white/10">
+      <div class="rounded-3xl overflow-hidden mb-16 shadow-2xl border border-white/10 group">
         <img 
           src="/images/ALG.jpg" 
-          alt="Academia Libre de Geomática" 
-          class="w-full h-[400px] object-cover"
+          alt="Academia Libre de Geomática - Comunidad" 
+          class="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
         />
       </div>
 
-      <div class="prose prose-invert prose-lg max-w-none text-slate-300 space-y-8 leading-relaxed">
+      <div class="prose prose-invert prose-lg max-w-none text-slate-300 space-y-8 leading-relaxed text-justify">
         
         <p>
           Si llegaste hasta aquí, probablemente compartes algo con nosotros: <strong>curiosidad por los SIG, la teledetección, el análisis espacial</strong> o cualquier herramienta que nos ayude a entender mejor el territorio.
@@ -40,8 +40,8 @@ const description = "Un manifiesto sobre el intercambio de conocimiento, los SIG
           Esta página nace con una idea muy simple: <strong>intercambiar conocimiento.</strong> Aquí difundimos y compartimos cursos, materiales y formaciones relacionadas con SIG y geomática. No es una tienda, no es una plataforma de ventas y tampoco pretende ser un negocio. Es, más bien, un espacio donde la comunidad puede subir, descargar y circular cursos para que más personas puedan aprender.
         </p>
 
-        <div class="bg-blue-900/10 border-l-4 border-blue-500 p-6 my-8 rounded-r-xl">
-          <p class="text-white font-medium italic">
+        <div class="bg-blue-900/10 border-l-4 border-blue-500 p-6 my-8 rounded-r-xl shadow-lg">
+          <p class="text-white font-medium italic mb-0">
             "Ahora bien, antes de que aparezca el primer comentario indignado sobre derechos de autor, digámoslo con claridad: sí, el tema existe y lo entendemos perfectamente."
           </p>
         </div>
@@ -50,14 +50,8 @@ const description = "Un manifiesto sobre el intercambio de conocimiento, los SIG
           Los cursos tienen autores, esfuerzo detrás y empresas que los producen. Pero también existe otra realidad que muchos estudiantes conocen bien: <strong>no todos los cursos que se venden cumplen lo que prometen.</strong>
         </p>
 
-        <ul class="space-y-4 list-none pl-0">
+        <ul class="space-y-4 list-none pl-0 my-8">
           <li class="flex items-start gap-3">
-            <span class="text-blue-500 mt-1">▹</span> <span>A veces prometen mentorías que nunca llegan.</span>
+            <span class="text-blue-500 font-bold text-xl">▹</span> 
+            <span>A veces prometen mentorías que nunca llegan.</span>
           </li>
-          <li class="flex items-start gap-3">
-            <span class="text-blue-500 mt-1">▹</span> <span>A veces los videos desaparecen antes del tiempo anunciado.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-blue-500 mt-1">▹</span> <span>A veces el material “completo” termina siendo solo algunos archivos sueltos.</span>
-          </li>
-          <li class
