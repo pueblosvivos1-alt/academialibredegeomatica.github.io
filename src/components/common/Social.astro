@@ -12,6 +12,7 @@ import {
   FaTiktok,
   FaGlobe,
   FaYoutube,
+  FaTelegram, // 1. Agregamos el icono de Telegram aquí
 } from "react-icons/fa";
 
 interface Props {
@@ -42,12 +43,14 @@ const iconClass =
           </a>
         </li>
       )}
+      
+      {/* 2. CORRECCIÓN DEL EMAIL: Quitamos el mailto: para que funcione tu formulario */}
       {links.email && (
         <li class={liClass}>
           <a
             class={iconClass}
             aria-label="Email"
-            href={`mailto:${links.email}`}
+            href={links.email} 
             target="_blank"
             rel="noopener noreferrer nofollow"
           >
@@ -56,6 +59,7 @@ const iconClass =
           </a>
         </li>
       )}
+
       {links.facebook && (
         <li class={liClass}>
           <a
@@ -70,6 +74,23 @@ const iconClass =
           </a>
         </li>
       )}
+
+      {/* 3. AGREGAMOS TELEGRAM: Para que el cuarto icono sea visible */}
+      {links.telegram && (
+        <li class={liClass}>
+          <a
+            class={iconClass}
+            aria-label="Telegram"
+            href={links.telegram}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+          >
+            <span class="sr-only">Telegram</span>
+            <FaTelegram className="w-6 h-6" />
+          </a>
+        </li>
+      )}
+
       {links.github && (
         <li class={liClass}>
           <a
