@@ -1,24 +1,35 @@
 ---
-// Si el index.astro funciona, esta línea tiene que funcionar por fuerza
-import Base from "@/layouts/Base.astro";
+import EntryLayout from "@components/home/EntryLayout.astro";
+
+// Creamos un objeto "falso" que simula lo que EntryLayout espera recibir
+const entry = {
+  data: {
+    title: "Biblioteca Digital",
+    description: "Recursos especializados en Geomática, SIG y Teledetección",
+  }
+};
+
+const categorias = [
+  { id: "sig", titulo: "SIG", color: "border-blue-500", icon: "📍" },
+  { id: "tele", titulo: "Teledetección", color: "border-green-500", icon: "🛰️" },
+  { id: "carto", titulo: "Cartografía", color: "border-yellow-500", icon: "🗺️" }
+];
 ---
 
-<Base title="Biblioteca Geomática">
-  <div style="padding: 100px 20px; text-align: center; background: rgba(0,0,0,0.5); border-radius: 20px; margin: 50px;">
-    <h1 style="color: white; font-size: 3rem; font-weight: bold; margin-bottom: 20px;">
-      📚 Biblioteca Digital
-    </h1>
-    <p style="color: #cbd5e1; font-size: 1.2rem;">
-      Si estás viendo este texto sobre el fondo oscuro de la web, ¡hemos vencido al error!
-    </p>
-    
-    <div style="display: grid; grid-template-cols: 1fr 1fr; gap: 20px; margin-top: 40px;">
-       <div style="border: 2px solid #3b82f6; padding: 20px; border-radius: 15px; color: white;">
-          <h2>📍 SIG</h2>
-       </div>
-       <div style="border: 2px solid #10b981; padding: 20px; border-radius: 15px; color: white;">
-          <h2>🛰️ Teledetección</h2>
-       </div>
+<EntryLayout entry={entry}>
+  <section class="container mx-auto py-10">
+    <div class="text-center mb-12">
+      <h1 class="text-5xl font-bold text-white mb-4">Biblioteca Especializada</h1>
     </div>
-  </div>
-</Base>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {categorias.map((cat) => (
+        <div class={`p-8 rounded-2xl border-2 ${cat.color} bg-black/60 backdrop-blur-md text-center`}>
+          <div class="text-6xl mb-4">{cat.icon}</div>
+          <h3 class="text-2xl font-bold text-white">{cat.titulo}</h3>
+          <p class="text-slate-400 mt-2">Explora los recursos de esta categoría.</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</EntryLayout>
