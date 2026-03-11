@@ -1,35 +1,38 @@
 ---
 import EntryLayout from "@components/home/EntryLayout.astro";
 
-// Creamos un objeto "falso" que simula lo que EntryLayout espera recibir
+// Estructura completa para que EntryLayout no de error
 const entry = {
   data: {
-    title: "Biblioteca Digital",
-    description: "Recursos especializados en Geomática, SIG y Teledetección",
-  }
+    title: "Biblioteca Digital de Geomática",
+    description: "Recursos especializados en SIG, Teledetección y Cartografía",
+  },
+  body: "", // Esto evita el error de 'marked'
+  content: "" // Esto también es necesario en algunas versiones
 };
 
 const categorias = [
-  { id: "sig", titulo: "SIG", color: "border-blue-500", icon: "📍" },
-  { id: "tele", titulo: "Teledetección", color: "border-green-500", icon: "🛰️" },
-  { id: "carto", titulo: "Cartografía", color: "border-yellow-500", icon: "🗺️" }
+  { id: "sig", titulo: "Sistemas de Información Geográfica", color: "border-blue-500", icon: "📍" },
+  { id: "tele", titulo: "Teledetección y Fotogrametría", color: "border-green-500", icon: "🛰️" },
+  { id: "carto", titulo: "Cartografía y Geodesia", color: "border-yellow-500", icon: "🗺️" }
 ];
 ---
 
 <EntryLayout entry={entry}>
-  <section class="container mx-auto py-10">
-    <div class="text-center mb-12">
-      <h1 class="text-5xl font-bold text-white mb-4">Biblioteca Especializada</h1>
+  <section class="container mx-auto py-10 px-4">
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-bold text-white mb-4">Bibliografía Especializada</h1>
+      <p class="text-slate-400 text-lg">Explora más de 1,000 libros y manuales.</p>
     </div>
 
     <div class="grid md:grid-cols-3 gap-8">
       {categorias.map((cat) => (
-        <div class={`p-8 rounded-2xl border-2 ${cat.color} bg-black/60 backdrop-blur-md text-center`}>
-          <div class="text-6xl mb-4">{cat.icon}</div>
-          <h3 class="text-2xl font-bold text-white">{cat.titulo}</h3>
-          <p class="text-slate-400 mt-2">Explora los recursos de esta categoría.</p>
+        <div class={`p-8 rounded-2xl border-2 ${cat.color} bg-slate-900/80 backdrop-blur-md text-center hover:scale-105 transition-transform`}>
+          <div class="text-7xl mb-6">{cat.icon}</div>
+          <h3 class="text-2xl font-bold text-white mb-2">{cat.titulo}</h3>
+          <p class="text-slate-400 text-sm">Colección de recursos digitales disponibles.</p>
         </div>
       ))}
     </div>
   </section>
-</EntryLayout>
+</BaseLayout>
