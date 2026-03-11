@@ -1,5 +1,5 @@
 ---
-// Importación relativa para evitar el error de "Cannot find module"
+// Importamos como 'Base' porque así se llama el archivo en tu carpeta layouts
 import Base from "../layouts/Base.astro";
 
 const categorias = [
@@ -27,7 +27,7 @@ const categorias = [
 ];
 ---
 
-<BaseLayout title="Biblioteca Digital de Geomática">
+<Base title="Biblioteca Digital">
   <section class="container py-12">
     <div class="text-center mb-16">
       <h1 class="text-5xl font-bold text-white mb-4">Bibliografía Especializada</h1>
@@ -50,24 +50,20 @@ const categorias = [
 
     <div class="space-y-24">
       {categorias.map((cat) => (
-        <div id={cat.id} class="scroll-mt-24">
+        <div id={cat.id} class="scroll-mt-24 pt-10">
           <div class="flex items-center mb-8 border-b border-white/10 pb-4">
             <span class="text-4xl mr-4">{cat.icon}</span>
             <h2 class="text-3xl font-bold text-white">{cat.titulo}</h2>
           </div>
-          
-          <div class="glass rounded-xl overflow-hidden border border-white/5 bg-white/5 p-4">
-             <p class="text-slate-400 italic">Próximamente se listarán los libros aquí...</p>
+          <div class="p-10 bg-white/5 rounded-xl border border-white/10 border-dashed text-center">
+             <p class="text-slate-500 italic">Los listados de libros se cargarán mediante archivos JSON próximamente...</p>
           </div>
         </div>
       ))}
     </div>
   </section>
-</BaseLayout>
+</Base>
 
 <style>
   html { scroll-behavior: smooth; }
-  .glass {
-    backdrop-filter: blur(10px);
-  }
 </style>
