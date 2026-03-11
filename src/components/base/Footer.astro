@@ -11,7 +11,7 @@ import Social from "@components/common/Social.astro";
     </div>
     
     <div class="text-center lg:col-6 lg:my-0 flex items-center justify-center lg:justify-end !opacity-100" style="filter: none !important;">
-      <div style="color: #ffffff !important;">
+      <div class="custom-social-container">
         <Social
           links={{
             email: "https://docs.google.com/forms/d/e/1FAIpQLSf8SyIco71F9ePWb4zinFwSL3H2sSMy-BG80ye95xEcSkmqkw/viewform",
@@ -26,11 +26,33 @@ import Social from "@components/common/Social.astro";
 </footer>
 
 <style>
-  /* Este bloque asegura que los iconos dentro de Social sean blancos y visibles */
-  :global(.social-links a), :global(svg) {
+  /* 1. Quitamos el fondo naranja y los bordes extraños que aparecieron */
+  .custom-social-container :global(.social-links a), 
+  .custom-social-container :global(a) {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+    padding: 8px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none !important;
+  }
+
+  /* 2. Aseguramos que los iconos sean blancos y de buen tamaño */
+  .custom-social-container :global(svg) {
     color: #ffffff !important;
     fill: #ffffff !important;
+    width: 24px !important;
+    height: 24px !important;
     opacity: 1 !important;
     filter: none !important;
+  }
+
+  /* 3. Efecto de brillo suave al pasar el mouse */
+  .custom-social-container :global(a:hover) {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: #3b82f6 !important; /* Azul sutil */
   }
 </style>
