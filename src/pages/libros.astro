@@ -1,9 +1,53 @@
 ---
-import { getIndex } from "@lib/contentParser";
-import EntryLayout from "@components/home/EntryLayout.astro";
-import type { HomeEntry } from "@/types";
+// Usamos la misma importación que ya te funciona en index.astro
+import Base from "@/layouts/Base.astro";
 
-const entry = (await getIndex("home")) as HomeEntry;
+const categorias = [
+  {
+    id: "sig",
+    titulo: "Sistemas de Información Geográfica",
+    desc: "Software, análisis espacial y gestión de datos vectoriales.",
+    color: "border-blue-500",
+    icon: "📍"
+  },
+  {
+    id: "tele",
+    titulo: "Teledetección y Fotogrametría",
+    desc: "Procesamiento de imágenes satelitales, drones y LiDAR.",
+    color: "border-green-500",
+    icon: "🛰️"
+  },
+  {
+    id: "carto",
+    titulo: "Cartografía y Geodesia",
+    desc: "Sistemas de referencia, proyecciones y diseño de mapas.",
+    color: "border-yellow-500",
+    icon: "🗺️"
+  }
+];
 ---
 
-<EntryLayout entry={entry} />
+<Base title="Biblioteca - Academia Libre de Geomática">
+  <main class="container mx-auto py-20 px-4">
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-bold text-white mb-4">Bibliografía Especializada</h1>
+      <p class="text-slate-300 text-lg max-w-2xl mx-auto">
+        Recursos digitales organizados por especialidad geomática.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 mb-24">
+      {categorias.map((cat) => (
+        <div class={`p-8 rounded-2xl border-2 ${cat.color} bg-black/40 backdrop-blur-sm text-center transition-transform hover:scale-105`}>
+          <div class="text-6xl mb-6">{cat.icon}</div>
+          <h3 class="text-2xl font-bold text-white mb-3">{cat.titulo}</h3>
+          <p class="text-slate-400 text-sm">{cat.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center p-10 bg-white/5 rounded-xl border border-white/10 border-dashed">
+       <p class="text-slate-400 italic">Próximamente: Listado detallado de libros en formato JSON.</p>
+    </div>
+  </main>
+</Base>
