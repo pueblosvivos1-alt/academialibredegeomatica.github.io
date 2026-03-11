@@ -1,8 +1,7 @@
 ---
-import BaseLayout from "@components/base/BaseLayout.astro";
----
+// Importación relativa para evitar el error de "Cannot find module"
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Datos temporales para el diseño (luego los moveremos a JSON)
 const categorias = [
   {
     id: "sig",
@@ -45,7 +44,6 @@ const categorias = [
           </div>
           <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-blue-400">{cat.titulo}</h3>
           <p class="text-slate-400 text-sm leading-relaxed">{cat.desc}</p>
-          <div class="mt-6 inline-block text-blue-400 font-semibold text-sm">Ver listado completo ↓</div>
         </a>
       ))}
     </div>
@@ -58,29 +56,8 @@ const categorias = [
             <h2 class="text-3xl font-bold text-white">{cat.titulo}</h2>
           </div>
           
-          <div class="glass rounded-xl overflow-hidden border border-white/5">
-            <div class="max-h-[600px] overflow-y-auto custom-scrollbar">
-              <table class="w-full text-left border-collapse">
-                <thead class="bg-white/5 text-slate-400 sticky top-0 backdrop-blur-md">
-                  <tr>
-                    <th class="p-4 font-semibold uppercase text-xs tracking-wider">Nombre del Libro / Recurso</th>
-                    <th class="p-4 text-right font-semibold uppercase text-xs tracking-wider">Acceso</th>
-                  </tr>
-                </thead>
-                <tbody class="text-slate-300 divide-y divide-white/5">
-                  <tr class="hover:bg-white/5 transition-colors">
-                    <td class="p-4 flex items-center">
-                      <span class="text-blue-500 mr-3">📄</span>
-                      Ejemplo de Manual de QGIS (Próximamente enlaces reales)
-                    </td>
-                    <td class="p-4 text-right">
-                      <button class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-1 rounded text-sm transition">Descargar</button>
-                    </td>
-                  </tr>
-                  {/* Aquí se inyectarán los 1,000 links automáticamente después */}
-                </tbody>
-              </table>
-            </div>
+          <div class="glass rounded-xl overflow-hidden border border-white/5 bg-white/5 p-4">
+             <p class="text-slate-400 italic">Próximamente se listarán los libros aquí...</p>
           </div>
         </div>
       ))}
@@ -90,14 +67,7 @@ const categorias = [
 
 <style>
   html { scroll-behavior: smooth; }
-  
-  .custom-scrollbar::-webkit-scrollbar { width: 8px; }
-  .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
-  .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.3); }
-
   .glass {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
     backdrop-filter: blur(10px);
   }
 </style>
