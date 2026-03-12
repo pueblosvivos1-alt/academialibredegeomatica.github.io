@@ -1,34 +1,31 @@
 ---
-title: ¡Bienvenidos a la Rebelión Geomática!
-description: Lanzamos la Academia con más de 101 cursos y 10 categorías especializadas para la comunidad.
+title: "¡Bienvenidos a la Rebelión Geomática!"
+description: "Lanzamos la Academia con más de 101 cursos y 10 categorías especializadas para la comunidad."
 date: 2024-03-11
-categories: [Geomática]
-author: oscar-paolo
-tags: [academia, sig, cursos]
+categories: ["Philosophy"]
+author: "john-doe"
+tags: ["academia", "sig"]
 draft: false
 hideToc: true
 ---
 
 # ¿Curiosidad por los SIG o la Teledetección? 🛰️
 
-Si llegaste hasta aquí, probablemente compartes algo con nosotros: **curiosidad por los SIG, la teledetección, el análisis espacial** o cualquier herramienta que nos ayude a entender mejor el territorio.
+Si llegaste hasta aquí, probablemente compartes algo con nosotros: **curiosidad por los SIG, la teledetección o el análisis espacial**.
 
 ![Portada Academia](/ALG.jpg)
 
 ### Un espacio para la comunidad
-Esta página nace con una idea muy simple: **intercambiar conocimiento.** Aquí difundimos y compartimos cursos, materiales y formaciones relacionadas con SIG y geomática. No es una tienda ni un negocio; es un espacio donde la comunidad puede subir, descargar y circular contenido para que más personas puedan aprender.
+Esta página nace con una idea muy simple: **intercambiar conocimiento.** Aquí compartimos materiales relacionados con SIG y geomática. No es una tienda; es un espacio comunitario.
 
 ### Lo que encontrarás hoy:
-Actualmente contamos con una biblioteca organizada y en crecimiento:
 * **Más de 101 cursos** disponibles en descarga directa.
-* **10 categorías especializadas** que cubren desde el SIG básico hasta IA aplicada.
-* **Acceso libre**: Sin registros molestos ni "vende-humos".
+* **10 categorías especializadas**.
+* **Acceso libre**: Sin registros molestos.
 
 ![Categorías de Cursos](/WebCollage.jpg)
 
-### ¡Únete a la masa crítica!
-No te quedes solo con los archivos, únete a la conversación y ayuda a que esta comunidad crezca:
-
+### ¡Únete a la conversación!
 - 🌐 [Nuestra Biblioteca Digital](https://academialibredegeomatica.github.io/)
 - 👥 [Comunidad en Facebook](https://www.facebook.com/share/14YV8kbuuQj/)
 - 💬 [Grupo de Telegram](https://t.me/+VPfvkv4ErNk1OGJh)
