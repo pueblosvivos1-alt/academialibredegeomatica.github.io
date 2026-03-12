@@ -1,8 +1,11 @@
 ---
-title: "¡Bienvenidos a la Rebelión Geomática!"
-description: "Lanzamos la Academia con más de 101 cursos y 10 categorías especializadas para la comunidad."
-pubDate: "Mar 11 2026"
-heroImage: "/ALG.jpg"
+title: ¡Bienvenidos a la Rebelión Geomática!
+description: Lanzamos la Academia con más de 101 cursos y 10 categorías especializadas para la comunidad.
+date: 2026-03-11
+categories: [Geomática]
+author: oscar-paolo
+tags: [academia, sig, cursos]
+hideToc: true
 ---
 
 # ¿Curiosidad por los SIG o la Teledetección? 🛰️
@@ -22,14 +25,11 @@ Actualmente contamos con una biblioteca organizada y en crecimiento:
 
 ![Categorías de Cursos](/WebCollage.jpg)
 
-### Nuestra Filosofía
-Creemos que el futuro del aprendizaje en geomática no está solo en vender cursos, sino en **crear verdaderas comunidades de aprendizaje**, donde compartir, practicar y discutir sea tan importante como ver un video.
-
 ### ¡Únete a la masa crítica!
 No te quedes solo con los archivos, únete a la conversación y ayuda a que esta comunidad crezca:
 
-* 🌐 [Nuestra Biblioteca Digital](https://academialibredegeomatica.github.io/)
-* 👥 [Comunidad en Facebook](https://www.facebook.com/share/14YV8kbuuQj/)
-* 💬 [Grupo de Telegram](https://t.me/+VPfvkv4ErNk1OGJh)
+- 🌐 [Nuestra Biblioteca Digital](https://academialibredegeomatica.github.io/)
+- 👥 [Comunidad en Facebook](https://www.facebook.com/share/14YV8kbuuQj/)
+- 💬 [Grupo de Telegram](https://t.me/+VPfvkv4ErNk1OGJh)
 
 ¡Que los datos espaciales estén siempre de tu lado! 🗺️
