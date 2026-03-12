@@ -1,12 +1,12 @@
 ---
-title: Bienvenidos a la Rebelion Geomatica
-description: Lanzamos la Academia con mas de 101 cursos y 10 categorias especializadas para la comunidad.
+title: "Bienvenidos a la Academia"
+description: "Explora mas de 101 cursos y 10 categorias de geomatica para aprender gratis."
 date: 2024-01-25
-categories: [Philosophy]
-author: john-doe
-tags: [ancient, stoicism]
-hideToc: true
+categories: ["Philosophy"]
+author: "john-doe"
+tags: ["ancient", "stoicism"]
 draft: false
+hideToc: true
 ---
 
 # ¿Curiosidad por los SIG o la Teledetección? 🛰️
