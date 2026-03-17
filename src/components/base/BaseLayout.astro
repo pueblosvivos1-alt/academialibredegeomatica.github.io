@@ -29,7 +29,6 @@ const baseUrl = "https://academialibredegeomatica.github.io";
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- favicon -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -108,7 +107,6 @@ const baseUrl = "https://academialibredegeomatica.github.io";
     />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <!-- Katex -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css"
@@ -127,9 +125,14 @@ const baseUrl = "https://academialibredegeomatica.github.io";
       crossorigin="anonymous"
       onload="renderMathInElement(document.body);"></script>
       
-    <!-- https://docs.astro.build/en/guides/view-transitions -->
     <ClientRouter fallback="swap" />
     <Tooltips interactive={false} delay={[333, 0]} />
+
+    <script 
+      defer 
+      data-domain="academialibredegeomatica.github.io" 
+      src="https://plausible.io/js/script.js">
+    </script>
   </head>
   <body>
     <Background />
@@ -138,6 +141,5 @@ const baseUrl = "https://academialibredegeomatica.github.io";
       <slot/>
     </main>
     <Footer />
-    <!-- <ObserverScript /> -->
-  </body>
+    </body>
 </html>
